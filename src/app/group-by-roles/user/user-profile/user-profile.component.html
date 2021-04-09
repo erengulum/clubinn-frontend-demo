@@ -1,0 +1,37 @@
+<div class="col-md-6 offset-3">
+    <div class="form">
+
+        <form [formGroup]="profileForm" (ngSubmit)="onClickSubmit()">
+            <div class="form-group">
+                <label>Hakkımda</label>
+                <input type="text" formControlName="about" class="form-control" />
+            </div>
+
+            <div class="form-group">
+                <label>Yasadiginiz Sehir</label>
+                <input type="text" formControlName="city" class="form-control" />
+            </div>
+
+            <div class="form-group">
+                <label>Telefon Numaranız:</label>
+                <input type="text" formControlName="phone" class="form-control" />
+            </div>
+
+            <div class="form-group">
+                <label>Hobileriniz</label>
+                <input type="text" formControlName="hobbies" class="form-control" />
+            </div>
+
+
+            <div class="form-group">
+                <button [disabled]="loading" type="submit" class="btn btn-primary">Save</button>
+
+            </div>
+
+
+            <div *ngIf="error" class="alert alert-danger">{{error}}</div>
+
+
+        </form>
+    </div>
+</div>
