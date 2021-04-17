@@ -55,13 +55,11 @@ export class LoginComponent implements OnInit {
     return this.loginForm.controls;
   }
 
-  login() {
-    console.log("login calisiyor")
+  login() {    
     this.submitted = true;
 
         // stop here if form is invalid
         if (this.loginForm.invalid) {
-          console.log("hata var calisiyor")
           return;
         }
 

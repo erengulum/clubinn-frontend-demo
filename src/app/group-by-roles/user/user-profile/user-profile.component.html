@@ -1,37 +1,97 @@
-<div class="col-md-6 offset-3">
-    <div class="form">
 
-        <form [formGroup]="profileForm" (ngSubmit)="onClickSubmit()">
-            <div class="form-group">
-                <label>Hakkımda</label>
-                <input type="text" formControlName="about" class="form-control" />
+
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<!------ Include the above in your HEAD tag ---------->
+
+
+<link rel="stylesheet" href="https://bootswatch.com/4/simplex/bootstrap.min.css"/>
+
+
+<div class="container">
+        <div class="row">
+            <div class="col-12">
+                <div class="card">
+
+                    <div class="card-body">
+                        <div class="card-title mb-4">
+                            <div class="d-flex justify-content-start">
+                                <div class="image-container">
+                                    <img src="http://placehold.it/150x150" id="imgProfile" style="width: 150px; height: 150px" class="img-thumbnail" />
+                                    <div class="middle">
+                                        <input type="button" class="btn btn-secondary" id="btnChangePicture" value="Change" />
+                                        <input type="file" style="display: none;" id="profilePicture" name="file" />
+                                    </div>
+                                </div>
+                                <div class="userData ml-3">
+                                    <h2 class="d-block" style="font-size: 1.5rem; color:teal; font-weight: bold"><a href="javascript:void(0);">{{currentUser.firstname}}  {{currentUser.surname}}</a></h2>
+                                    <h6 class="d-block"><a href="javascript:void(0)">5</a> Joined Clubs</h6>
+                                    <h6 class="d-block"><a href="javascript:void(0)">1,500</a> Posts</h6>
+                                </div>
+                                <div class="ml-auto">
+                                    <input type="button" class="btn btn-primary d-none" id="btnDiscard" value="Discard Changes" />
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-6 offset-3">
+                                <div class="form">
+                            
+                                    <form [formGroup]="profileForm" (ngSubmit)="onClickSubmit()">
+                                        <div class="form-group">
+                                            <label>Hakkımda</label>
+                                            <input type="text" formControlName="about" class="form-control" />
+                                        </div>
+                            
+                                        <div class="form-group">
+                                            <label>Yasadiginiz Sehir</label>
+                                            <input type="text" formControlName="city" class="form-control" />
+                                        </div>
+                            
+                                        <div class="form-group">
+                                            <label>Telefon Numaranız:</label>
+                                            <input type="text" formControlName="phone" class="form-control" />
+                                        </div>
+                            
+                                        <div class="form-group">
+                                            <label>Hobileriniz</label>
+                                            <input type="text" formControlName="hobbies" class="form-control" />
+                                        </div>
+                            
+                            
+                                        <div class="form-group">
+                                            <button [disabled]="loading" type="submit" class="btn btn-primary">Save</button>
+                            
+                                        </div>
+                            
+                            
+                                        <div *ngIf="error" class="alert alert-danger">{{error}}</div>
+                            
+                            
+                                    </form>
+                                </div>
+                            </div>
+                            
+
+
+                        </div>
+
+
+
+
+
+
+
+
+
+
+
+
+                    </div>
+
+                </div>
             </div>
-
-            <div class="form-group">
-                <label>Yasadiginiz Sehir</label>
-                <input type="text" formControlName="city" class="form-control" />
-            </div>
-
-            <div class="form-group">
-                <label>Telefon Numaranız:</label>
-                <input type="text" formControlName="phone" class="form-control" />
-            </div>
-
-            <div class="form-group">
-                <label>Hobileriniz</label>
-                <input type="text" formControlName="hobbies" class="form-control" />
-            </div>
-
-
-            <div class="form-group">
-                <button [disabled]="loading" type="submit" class="btn btn-primary">Save</button>
-
-            </div>
-
-
-            <div *ngIf="error" class="alert alert-danger">{{error}}</div>
-
-
-        </form>
+        </div>
     </div>
-</div>
