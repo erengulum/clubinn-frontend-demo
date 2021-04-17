@@ -3,6 +3,8 @@ import {Router, ActivatedRoute} from '@angular/router';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import { UserProfile } from 'src/app/common/user-profile';
 import { UserService } from 'src/app/services/user.service';
+import {AuthenticationService} from "../../../services/security/authentication.service";
+import { TokenDto } from 'src/app/entity/tokendto';
 
 @Component({
   selector: 'app-user-profile',
@@ -16,13 +18,19 @@ export class UserProfileComponent implements OnInit {
   submitted = false;
   returnUrl: string;
   error = '';
-
+  currentUser: TokenDto;
+  currentUsername:string;
 
   constructor(private formBuilder: FormBuilder, //Reactive form'un form builder'ı
     private route: ActivatedRoute,
     private router: Router,
-    private userService:UserService) {
-
+    private userService:UserService,
+    private authenticationService: AuthenticationService
+    ) 
+    
+    {
+      this.authenticationService.currentUser.subscribe(x => this.currentUser = x);
+      this.currentUsername =this.currentUser.username;
       this.profileForm = this.formBuilder.group({
         about: ['', Validators.required],
         city: ['', Validators.required],
@@ -44,7 +52,7 @@ export class UserProfileComponent implements OnInit {
         alert('Invalid input');
         return;
     }
-    this.userService.updateUserProfile(this.profileForm.getRawValue())
+    this.userService.updateUserProfile(this.profileForm.getRawValue(),this.currentUsername)
         .subscribe((): void => {
             alert('Saved!');
         });
@@ -52,19 +60,9 @@ export class UserProfileComponent implements OnInit {
 
 
   private retrieveData(): void {
-    this.userService.getProfile("eren")
+    console.log("isim: ",this.currentUsername);
+    this.userService.getProfile(this.currentUsername)
         .subscribe((res: UserProfile) => {
-            // Assuming res has a structure like:
-            // res = {
-            //     field1: "some-string",
-            //     field2: "other-string",
-            //     subgroupName: {
-            //         subfield2: "another-string"
-            //     },
-            // }
-            // Values in res that don't line up to the form structure
-            // are discarded. You can also pass in your own object you
-            // construct ad-hoc.
             this.profileForm.patchValue(res);
         });
 }

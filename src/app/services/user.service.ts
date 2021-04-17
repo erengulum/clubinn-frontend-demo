@@ -18,11 +18,12 @@ export class UserService {
     }
 
     getProfile(username:string) {
-        return this.http.get<UserProfile>(`${environment.API_BASE_PATH}/user/profile/eren`);
+        return this.http.get<UserProfile>(`${environment.API_BASE_PATH}/user/profile/${username}`);
     }
 
-    updateUserProfile(profile:UserProfile){
-        return this.http.put<any>(`${environment.API_BASE_PATH}/user/profile/update/eren`,profile);
+    updateUserProfile(profile:UserProfile, username:string){
+        console.log("update prfoile: ",username);
+        return this.http.put<any>(`${environment.API_BASE_PATH}/user/profile/update/${username}`,profile);
       }
   
 
