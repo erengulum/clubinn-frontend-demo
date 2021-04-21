@@ -1,0 +1,37 @@
+<div class="main-content" style="padding-right: 80px; padding-right: 80px;padding-top: 60px;"
+    style="align-items:center;">
+    <div class="section-content section-content-p30" style="align-items:center;">
+        <div class="container-fluid">
+            <div class="row" style="align-self: center;">
+                <!-- loop over the collection of products -->
+                <div *ngFor="let category of clubcategories" class="col-md-3">
+                 
+
+
+                    <div class="card" style="width: 18rem; margin: 20px;">
+                        <a routerLink="subclubs/{{ category.id }}" style="align-self: center;" >
+                        <img class="card-img-top"  src={{category.imageurl}} width="80" height="150" alt="Card image cap">  </a>
+                        <div class="card-body">
+                            <a routerLink="subclubs/{{ category.id }}" style="align-self: center;">
+                          <h2 class="card-title">{{ category.clubCategoryName }}</h2> </a>
+                          <p class="card-text">{{ category.description }}</p>
+                          <a routerLink="subclubs/{{ category.id }}" class="btn btn-primary">Go Inside!</a>
+                        </div>
+                      </div>
+
+
+
+
+                </div>
+
+                <div *ngIf="clubcategories?.length == 0" class="alert alert-warning col-md-12" role="alert">
+                    No club categories found.
+                </div>
+
+            </div>
+
+
+
+        </div>
+    </div>
+</div>

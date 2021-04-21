@@ -23,6 +23,12 @@ import { UserLayoutComponent } from './group-by-roles/user/user-layout/user-layo
 import { AdminHeaderComponent } from './group-by-roles/admin/admin-layout/admin-header/admin-header.component';
 import { UserHeaderComponent } from './group-by-roles/user/user-layout/user-header/user-header.component';
 import { UserProfileComponent } from './group-by-roles/user/user-profile/user-profile.component';
+import { ClubCategoriesCRUDComponent } from './group-by-roles/admin/club-categories-crud/club-categories-crud.component';
+import { SubClubCRUDComponent } from './group-by-roles/admin/sub-club-crud/sub-club-crud.component';
+import { SubclubsgridComponent } from './group-by-roles/user/subclubsgrid/subclubsgrid.component';
+import { ClubgroupslistingComponent } from './group-by-roles/user/clubgroupslisting/clubgroupslisting.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+
 
 
 
@@ -39,7 +45,12 @@ import { UserProfileComponent } from './group-by-roles/user/user-profile/user-pr
     UserLayoutComponent,
     UserHeaderComponent,
     AdminHeaderComponent,
-    UserProfileComponent
+    UserProfileComponent,
+    ClubCategoriesCRUDComponent,
+    SubClubCRUDComponent,
+    SubclubsgridComponent,
+    ClubgroupslistingComponent,
+    
       ],
   imports: [
     BrowserModule,
@@ -48,8 +59,11 @@ import { UserProfileComponent } from './group-by-roles/user/user-profile/user-pr
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
-    MatSliderModule
-  ],
+    MatSliderModule,
+    FormsModule,
+    NgbModule,
+
+      ],
   providers: [ApiService,AuthenticationService,AuthGuard,
     {provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true}, //giden her requeste JWT token'ını ekliyor dogrulama icin
     {provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true}

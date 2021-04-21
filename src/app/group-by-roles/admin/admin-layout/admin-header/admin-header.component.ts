@@ -36,5 +36,16 @@ adminHomepage() {
   this.router.navigate(['/admin/home']);
 }
 
+subclubs(){
+  this.router.navigate(['/admin/subclubs']);
+}
+
+clubcategories(){
+  this.router.navigate(['/admin/clubcategories']);
+}
+
+
+
+
 
 }
