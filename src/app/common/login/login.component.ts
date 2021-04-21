@@ -76,7 +76,8 @@ export class LoginComponent implements OnInit {
           }
         },
         error => {
-          this.error = error;
+          
+          this.error = "Wrong Username or Password! Please try again";
           this.loading = false;
         });
     // event.preventDefault()

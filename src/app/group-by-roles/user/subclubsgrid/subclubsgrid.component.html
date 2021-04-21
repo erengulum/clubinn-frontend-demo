@@ -1,0 +1,34 @@
+<div class="main-content" style="padding-right: 80px; padding-right: 80px;padding-top: 60px;" style="align-items:center;">
+    <div class="section-content section-content-p30" style="align-items:center;">
+        <div class="container-fluid" >
+            <div class="row" style="align-self: center;">
+                <!-- loop over the collection of products -->
+                <div *ngFor="let subclub of subclubs" class="col-md-3" >
+
+
+                        <div class="card" style="width: 18rem; margin: 20px;">
+                            <a  routerLink="#" style="align-self: center;" >
+                            <img class="card-img-top"  src={{subclub.imageurl}} width="80" height="150" alt="Card image cap">  </a>
+                            <div class="card-body">
+                                <a routerLink="#" style="align-self: center;">
+                              <h2 class="card-title">{{ subclub.subClubName }}</h2> </a>
+                              <p class="card-text">{{ subclub.description }}</p>
+                              <a routerLink="#" class="btn btn-primary">Join</a>
+                            </div>
+                          </div>
+    
+    
+                </div>
+
+                <div *ngIf="subclubs?.length == 0" class="alert alert-warning col-md-12" role="alert">
+                    No Subclub found.
+                </div>
+
+            </div>
+
+            
+
+        </div>
+    </div>
+</div>
+
