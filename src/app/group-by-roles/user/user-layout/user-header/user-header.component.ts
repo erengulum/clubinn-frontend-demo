@@ -46,5 +46,9 @@ homepage() {
   this.router.navigate(['/user/home']);
 }
 
+clubcategories(){
+  this.router.navigate(['/user/categories']);
+}
+
 
 }
