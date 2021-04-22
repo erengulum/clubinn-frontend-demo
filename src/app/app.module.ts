@@ -49,7 +49,7 @@ import { Ng2SearchPipeModule } from 'ng2-search-filter';
     UserHeaderComponent,
     AdminHeaderComponent,
     UserProfileComponent,
-    SettingUserComponent
+    SettingUserComponent,
     ClubCategoriesCRUDComponent,
     SubClubCRUDComponent,
     SubclubsgridComponent,
