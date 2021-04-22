@@ -7,7 +7,7 @@ import { Role } from './entity/role';
 import { AdminHomepageComponent } from "./group-by-roles/admin/admin-homepage/admin-homepage.component";
 import { UserHomepageComponent } from "./group-by-roles/user/user-homepage/user-homepage.component";
 import { UserProfileComponent } from "./group-by-roles/user/user-profile/user-profile.component";
-
+import { SettingUserComponent } from "./group-by-roles/user/setting-user/setting-user.component";
 
 const routes: Routes = [
 
@@ -18,7 +18,8 @@ const routes: Routes = [
     children: [
       { path: '', redirectTo: 'home', pathMatch: 'full' },
       { path: 'home', component: UserHomepageComponent },
-      { path: 'profile', component: UserProfileComponent }
+      { path: 'profile', component: UserProfileComponent },
+      { path: 'settings', component: SettingUserComponent }
 
     ]
   },

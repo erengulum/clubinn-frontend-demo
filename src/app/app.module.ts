@@ -23,6 +23,7 @@ import { UserLayoutComponent } from './group-by-roles/user/user-layout/user-layo
 import { AdminHeaderComponent } from './group-by-roles/admin/admin-layout/admin-header/admin-header.component';
 import { UserHeaderComponent } from './group-by-roles/user/user-layout/user-header/user-header.component';
 import { UserProfileComponent } from './group-by-roles/user/user-profile/user-profile.component';
+import { SettingUserComponent } from './group-by-roles/user/setting-user/setting-user.component';
 
 
 
@@ -39,7 +40,8 @@ import { UserProfileComponent } from './group-by-roles/user/user-profile/user-pr
     UserLayoutComponent,
     UserHeaderComponent,
     AdminHeaderComponent,
-    UserProfileComponent
+    UserProfileComponent,
+    SettingUserComponent
       ],
   imports: [
     BrowserModule,

@@ -38,6 +38,10 @@ profile() {
   this.router.navigate(['/user/profile']);
 }
 
+settings() {
+  this.router.navigate(['/user/settings']);
+}
+
 homepage() {
   this.router.navigate(['/user/home']);
 }

@@ -6,6 +6,7 @@ import { environment } from '../../../environments/environment';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { TokenDto } from '../../entity/tokendto';
 
+
 @Injectable({ providedIn: 'root' })
 export class AuthenticationService {
     private currentUserSubject: BehaviorSubject<TokenDto>;
