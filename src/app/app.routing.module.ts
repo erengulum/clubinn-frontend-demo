@@ -24,7 +24,7 @@ const routes: Routes = [
       { path: '', redirectTo: 'home', pathMatch: 'full' },
       { path: 'home', component: UserHomepageComponent },
       { path: 'profile', component: UserProfileComponent },
-      { path: 'settings', component: SettingUserComponent }
+      { path: 'settings', component: SettingUserComponent },
       { path: 'categories', component: ClubgroupslistingComponent },
       { path: 'categories/subclubs/:categoryId', component: SubclubsgridComponent }
 
