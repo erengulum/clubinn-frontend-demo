@@ -23,11 +23,14 @@ import { UserLayoutComponent } from './group-by-roles/user/user-layout/user-layo
 import { AdminHeaderComponent } from './group-by-roles/admin/admin-layout/admin-header/admin-header.component';
 import { UserHeaderComponent } from './group-by-roles/user/user-layout/user-header/user-header.component';
 import { UserProfileComponent } from './group-by-roles/user/user-profile/user-profile.component';
+import { SettingUserComponent } from './group-by-roles/user/setting-user/setting-user.component';
 import { ClubCategoriesCRUDComponent } from './group-by-roles/admin/club-categories-crud/club-categories-crud.component';
 import { SubClubCRUDComponent } from './group-by-roles/admin/sub-club-crud/sub-club-crud.component';
 import { SubclubsgridComponent } from './group-by-roles/user/subclubsgrid/subclubsgrid.component';
 import { ClubgroupslistingComponent } from './group-by-roles/user/clubgroupslisting/clubgroupslisting.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { Ng2SearchPipeModule } from 'ng2-search-filter';
+
 
 
 
@@ -46,6 +49,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     UserHeaderComponent,
     AdminHeaderComponent,
     UserProfileComponent,
+    SettingUserComponent,
     ClubCategoriesCRUDComponent,
     SubClubCRUDComponent,
     SubclubsgridComponent,
@@ -62,6 +66,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     MatSliderModule,
     FormsModule,
     NgbModule,
+    Ng2SearchPipeModule
 
       ],
   providers: [ApiService,AuthenticationService,AuthGuard,

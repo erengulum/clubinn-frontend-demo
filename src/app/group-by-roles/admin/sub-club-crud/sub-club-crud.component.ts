@@ -12,6 +12,7 @@ import {FormBuilder, FormGroup, Validators} from '@angular/forms';
   styleUrls: ['./sub-club-crud.component.css']
 })
 export class SubClubCRUDComponent implements OnInit {
+  term: string;
 
   dataSource: SubClubDto[];
   subclubForm: FormGroup;

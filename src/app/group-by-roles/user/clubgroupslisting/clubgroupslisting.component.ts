@@ -13,6 +13,9 @@ import { ClubCategoryService } from 'src/app/services/clubcategoryservice';
 })
 export class ClubgroupslistingComponent implements OnInit {
 
+  term: string;
+
+  
   clubcategories: ClubCategoryDto[] = [];
   currentCategoryId: number = 1;
   previousCategoryId: number = 1;

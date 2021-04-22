@@ -18,6 +18,7 @@ export class UserProfileComponent implements OnInit {
   submitted = false;
   returnUrl: string;
   error = '';
+  url = '';
   currentUser: TokenDto;
   currentUsername:string;
 
@@ -65,6 +66,21 @@ export class UserProfileComponent implements OnInit {
         .subscribe((res: UserProfile) => {
             this.profileForm.patchValue(res);
         });
+}
+
+onSelectFile(event) {
+  if (event.target.files && event.target.files[0]) {
+    var reader = new FileReader();
+
+    reader.readAsDataURL(event.target.files[0]); // read file as data url
+
+    reader.onload = (event) => { // called once readAsDataURL is completed
+      this.url = event.target.result as string;
+    }
+  }
+}
+public delete(){
+  this.url = null;
 }
 
 
