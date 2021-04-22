@@ -19,10 +19,15 @@
 .btnSubmit
 {
     border:none;
-    border-radius:1.5rem;
+    border-radius:2.0rem;
     padding: 1%;
     width: 20%;
     cursor: pointer;
-    background: #0062cc;
+    background: #e90505;
     color: #fff;
+    transition-duration: 0.4s;
 }
+.btnSubmit:hover {
+    background-color: #1f08f3; /* Blue */
+    color: white;
+  }

@@ -7,6 +7,7 @@ import { Role } from './entity/role';
 import { AdminHomepageComponent } from "./group-by-roles/admin/admin-homepage/admin-homepage.component";
 import { UserHomepageComponent } from "./group-by-roles/user/user-homepage/user-homepage.component";
 import { UserProfileComponent } from "./group-by-roles/user/user-profile/user-profile.component";
+import { SettingUserComponent } from "./group-by-roles/user/setting-user/setting-user.component";
 import { ClubCategoriesCRUDComponent } from "./group-by-roles/admin/club-categories-crud/club-categories-crud.component";
 import { SubClubCRUDComponent } from "./group-by-roles/admin/sub-club-crud/sub-club-crud.component";
 import { ClubgroupslistingComponent } from "./group-by-roles/user/clubgroupslisting/clubgroupslisting.component";
@@ -23,6 +24,7 @@ const routes: Routes = [
       { path: '', redirectTo: 'home', pathMatch: 'full' },
       { path: 'home', component: UserHomepageComponent },
       { path: 'profile', component: UserProfileComponent },
+      { path: 'settings', component: SettingUserComponent }
       { path: 'categories', component: ClubgroupslistingComponent },
       { path: 'categories/subclubs/:categoryId', component: SubclubsgridComponent }
 

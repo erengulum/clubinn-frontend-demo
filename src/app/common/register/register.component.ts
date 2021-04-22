@@ -4,6 +4,7 @@ import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {first} from 'rxjs/operators';
 import {AuthenticationService} from "../../services/security/authentication.service";
 import { MustMatch } from '../../helpers/must-match.validator';
+import {MatButtonModule} from '@angular/material/button';
 
 
 @Component({
