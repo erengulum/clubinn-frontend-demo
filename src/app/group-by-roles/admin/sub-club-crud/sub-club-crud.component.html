@@ -25,6 +25,7 @@
                         <div class="col-sm-6">
                             <h2> <b> Subclub Listing</b></h2>
                         </div>
+                        
                         <div class="col-sm-6">
                             <button class="btn btn-success" (click)="open(content)">Add New Subclub</button>
 
@@ -32,6 +33,10 @@
                         </div>
                     </div>
                 </div>
+        
+
+                <input type="text" class="form-control" placeholder="Search Here" [(ngModel)]="term">
+
                 <table class="table table-striped table-hover">
                     <thead>
                         <tr>
@@ -46,7 +51,7 @@
 
 
 
-                        <tr *ngFor="let subclub of dataSource">
+                        <tr *ngFor="let subclub of dataSource | filter:term">
 
                             <td> {{subclub.id}}</td>
                             <td>  <img class="img-responsive" src={{subclub.imageurl}} width="60" height="30"></td>

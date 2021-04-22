@@ -1,10 +1,14 @@
+<div class="form-group">
+    <input type="text" class="form-control" placeholder="Search Here" [(ngModel)]="term">
+</div>
+
 <div class="main-content" style="padding-right: 80px; padding-right: 80px;padding-top: 60px;"
     style="align-items:center;">
     <div class="section-content section-content-p30" style="align-items:center;">
         <div class="container-fluid">
             <div class="row" style="align-self: center;">
                 <!-- loop over the collection of products -->
-                <div *ngFor="let category of clubcategories" class="col-md-3">
+                <div *ngFor="let category of clubcategories | filter:term" class="col-md-3">
                  
 
 
