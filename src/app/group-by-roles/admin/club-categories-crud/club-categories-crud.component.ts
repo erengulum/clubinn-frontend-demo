@@ -16,7 +16,8 @@ declare var $: any;
   styleUrls: ['./club-categories-crud.component.css']
 })
 export class ClubCategoriesCRUDComponent implements OnInit {
-
+  term: string;
+  
   dataSource: ClubCategoryDto[];
   categoryForm: FormGroup;
 

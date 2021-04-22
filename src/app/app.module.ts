@@ -28,6 +28,7 @@ import { SubClubCRUDComponent } from './group-by-roles/admin/sub-club-crud/sub-c
 import { SubclubsgridComponent } from './group-by-roles/user/subclubsgrid/subclubsgrid.component';
 import { ClubgroupslistingComponent } from './group-by-roles/user/clubgroupslisting/clubgroupslisting.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { Ng2SearchPipeModule } from 'ng2-search-filter';
 
 
 
@@ -62,6 +63,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     MatSliderModule,
     FormsModule,
     NgbModule,
+    Ng2SearchPipeModule
 
       ],
   providers: [ApiService,AuthenticationService,AuthGuard,
