@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Bootstrap CRUD Data Table for Database with Modal Form</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto|Varela+Round">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+
+
+
+
+
+</head>
+
+<body>
+
+    <div class="container-xl">
+        <div class="table-responsive">
+            <div class="table-wrapper">
+                <div class="table-title">
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <h2> <b> Club Categories</b></h2>
+                        </div>
+                        <div class="col-sm-6">
+
+                            <button class="btn btn-success" (click)="open(content)">Add New Club Category</button>
+
+
+                        </div>
+                    </div>
+                </div>
+                
+                <input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search for names.." title="Type in a name">
+
+                <table id="myTable" class="table table-striped table-hover">
+                    <tr>
+                        <th>Club Category Id</th>
+                        <th>Image</th>
+                        <th>Club Category</th>
+                        <th>Description</th>
+                        <th>Actions</th>
+                    </tr>
+
+
+
+                    <tr *ngFor="let club of dataSource">
+
+                        <td> {{club.id}}</td>
+                        <td>  <img class="img-responsive" src={{club.imageurl}} width="60" height="30"></td>
+                        <td> {{club.clubCategoryName}}</td>
+                        <td> {{club.description}}</td>
+                        <td>
+                            <a href="#editEmployeeModal" class="edit" data-toggle="modal"><i class="material-icons"
+                                    data-toggle="tooltip" title="Edit">&#xE254;</i></a>
+                            <button class="btn" (click)="deleteClubCategory(club.id)"><i
+                                    class="fa fa-trash"></i></button>
+
+                        </td>
+                    </tr>
+
+                </table>
+
+
+            </div>
+        </div>
+    </div>
+
+
+
+    
+
+
+
+
+</body>
+
+
+
+
+
+<script>
+    function myFunction() {
+      console.log("calisiyorr")
+      var input, filter, table, tr, td, i, txtValue;
+      input = document.getElementById("myInput");
+      filter = input.value.toUpperCase();
+      table = document.getElementById("myTable");
+      tr = table.getElementsByTagName("tr");
+      for (i = 0; i < tr.length; i++) {
+        td = tr[i].getElementsByTagName("td")[1];
+        if (td) {
+          txtValue = td.textContent || td.innerText;
+          if (txtValue.toUpperCase().indexOf(filter) > -1) {
+            tr[i].style.display = "";
+          } else {
+            tr[i].style.display = "none";
+          }
+        }       
+      }
+    }
+</script>
+
+
+
+<ng-template #content let-modal>
+    <div class="modal-header">
+        <h4 class="modal-title" id="modal-basic-title">Create a New Club Category</h4>
+        <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+
+    <div class="modal-body">
+        <div class="col-md-6 offset-3">
+            <div class="form">
+
+                <form [formGroup]="categoryForm" (ngSubmit)="save()">
+                    <div class="form-group">
+                        <label>Club Category Name</label>
+                        <input type="text" formControlName="clubCategoryName" class="form-control" />
+                    </div>
+
+                    <div class="form-group">
+                        <label>Url of the Header Image</label>
+                        <input type="text" formControlName="imageurl" class="form-control" />
+                    </div>
+
+                    <div class="form-group">
+                        <label>Description of the Category:</label>
+                        <input type="text" formControlName="description" class="form-control" />
+                    </div>
+
+                    <div class="form-group">
+                        <button [disabled]="loading" type="submit" class="btn btn-primary">Save</button>
+
+                    </div>
+
+                    <div *ngIf="error" class="alert alert-danger">{{error}}</div>
+
+
+                </form>
+            </div>
+        </div>
+    </div>
+</ng-template>
+
+
+
+<pre>{{ closeResult }}</pre>
+
+
+</html>
