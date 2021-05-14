@@ -38,12 +38,14 @@
 
                             <button class="btn btn-success" (click)="open(content)">Add New Club Category</button>
 
-
+                            <button class="btn btn-primary" (click)="open(requests)">List Club Category
+                                Requests</button>
+                                
                         </div>
                     </div>
                 </div>
                 
-                <input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search for names.." title="Type in a name">
+                <input type="text" class="form-control" placeholder="Search Here" [(ngModel)]="term">
 
                 <table id="myTable" class="table table-striped table-hover">
                     <tr>
@@ -56,7 +58,7 @@
 
 
 
-                    <tr *ngFor="let club of dataSource">
+                    <tr *ngFor="let club of dataSource  | filter:term">
 
                         <td> {{club.id}}</td>
                         <td>  <img class="img-responsive" src={{club.imageurl}} width="60" height="30"></td>
@@ -93,7 +95,6 @@
 
 <script>
     function myFunction() {
-      console.log("calisiyorr")
       var input, filter, table, tr, td, i, txtValue;
       input = document.getElementById("myInput");
       filter = input.value.toUpperCase();
@@ -159,7 +160,60 @@
 
 
 
-<pre>{{ closeResult }}</pre>
+
+
+
+<ng-template #requests let-modal>
+    <div class="modal-header" >
+        <h4 class="modal-title" id="modal-basic-title">Request List</h4>
+        <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+
+    <div class="modal-body">
+
+
+        <table id="myTable" class="table table-responsive">
+            <tr>
+                <th>Id</th>
+                <th>Club Category Name</th>
+                <th>Reason</th>
+                <th>Description</th>
+                <th>Votes</th>
+                <th>Actions</th>
+            </tr>
+
+
+
+            <tr *ngFor="let request of requestList  | filter:term">
+
+                <td> {{request.req_id}}</td>
+                <td> {{request.clubCategoryName}}</td>
+                <td> {{request.reason}}</td>
+                <td> {{request.description}}</td>
+                <td> {{request.numberOfVotes}}</td>
+                <td>
+
+                    <button class="approvebtn" (click)="convertToClubCategory(request)" ><i 
+                        class="fa fa-trash" >Add</i></button>
+
+                    <button class="deletebtn" (click)="deleteRequest(request.req_id)"><i
+                        class="fa fa-trash">Del</i></button>
+                </td>
+            </tr>
+
+        </table>
+
+
+
+    </div>
+</ng-template>
+
+
+
+
+
 
 
 </html>

@@ -10,6 +10,7 @@ import { SubclubService } from 'src/app/services/subclubservice';
   styleUrls: ['./subclubsgrid.component.css']
 })
 export class SubclubsgridComponent implements OnInit {
+  term: string;
 
   subclubs: SubClubDto[] = [];
   currentCategoryId;
