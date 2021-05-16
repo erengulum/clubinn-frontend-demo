@@ -30,6 +30,7 @@ import { SubclubsgridComponent } from './group-by-roles/user/subclubsgrid/subclu
 import { ClubgroupslistingComponent } from './group-by-roles/user/clubgroupslisting/clubgroupslisting.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { Ng2SearchPipeModule } from 'ng2-search-filter';
+import { ChatComponent } from './group-by-roles/user/chat/chat.component';
 
 
 
@@ -54,6 +55,7 @@ import { Ng2SearchPipeModule } from 'ng2-search-filter';
     SubClubCRUDComponent,
     SubclubsgridComponent,
     ClubgroupslistingComponent,
+    ChatComponent,
     
       ],
   imports: [

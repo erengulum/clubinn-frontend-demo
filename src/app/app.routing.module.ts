@@ -12,6 +12,7 @@ import { ClubCategoriesCRUDComponent } from "./group-by-roles/admin/club-categor
 import { SubClubCRUDComponent } from "./group-by-roles/admin/sub-club-crud/sub-club-crud.component";
 import { ClubgroupslistingComponent } from "./group-by-roles/user/clubgroupslisting/clubgroupslisting.component";
 import { SubclubsgridComponent } from "./group-by-roles/user/subclubsgrid/subclubsgrid.component";
+import { ChatComponent } from "./group-by-roles/user/chat/chat.component";
 
 
 const routes: Routes = [
@@ -26,7 +27,8 @@ const routes: Routes = [
       { path: 'profile', component: UserProfileComponent },
       { path: 'settings', component: SettingUserComponent },
       { path: 'categories', component: ClubgroupslistingComponent },
-      { path: 'categories/subclubs/:categoryId', component: SubclubsgridComponent }
+      { path: 'categories/subclubs/:categoryId', component: SubclubsgridComponent },
+      { path: 'categories/subclubs/:categoryId/chat', component: ChatComponent }
 
     ]
   },
