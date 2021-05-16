@@ -3,6 +3,8 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { SubClubDto } from 'src/app/entity/subclubdto';
 import { SubclubService } from 'src/app/services/subclubservice';
+import { Router } from '@angular/router';
+import { ChatService } from 'src/app/services/chatservice';
 
 @Component({
   selector: 'app-subclubsgrid',
@@ -26,7 +28,7 @@ export class SubclubsgridComponent implements OnInit {
 
 
 
-  constructor(public httpClient: HttpClient, private subclubService:SubclubService, private route: ActivatedRoute) { }
+  constructor(public httpClient: HttpClient, private subclubService:SubclubService, private route: ActivatedRoute, private router: Router, private chatservice:ChatService) { }
 
 
   
@@ -50,7 +52,15 @@ export class SubclubsgridComponent implements OnInit {
       }
     );
 }
+chat(){
+  this.router.navigate(['user/categories/subclubs/' + this.currentCategoryId + '/chat']);
+  
+    this.chatservice.join()
+        .subscribe((): void => {
+            alert('Saved!');
+        });
 
+}
 
 
 }
