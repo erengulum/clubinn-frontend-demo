@@ -4,8 +4,8 @@
 
 export const environment = {
   production: false,
-  API_BASE_PATH:"http://localhost:6060/api",
-  API_BASE_PATH_WS:"ws://localhost:6060/api"
+  API_BASE_PATH:"http://localhost:8080/api",
+  API_BASE_PATH_WS:"ws://localhost:8080/api"
 };
 
 

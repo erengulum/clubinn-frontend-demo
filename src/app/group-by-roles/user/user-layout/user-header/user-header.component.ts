@@ -50,5 +50,9 @@ clubcategories(){
   this.router.navigate(['/user/categories']);
 }
 
+mysubclubs(){
+  this.router.navigate(['/user/mysubclubs']);
+}
+
 
 }
