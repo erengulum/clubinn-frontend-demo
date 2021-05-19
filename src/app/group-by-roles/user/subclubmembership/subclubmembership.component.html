@@ -1,0 +1,40 @@
+<div class="form-group">
+    <input type="text" class="form-control" placeholder="Search Here" [(ngModel)]="term">
+</div>
+
+<div class="main-content" style="padding-right: 80px; padding-right: 80px;padding-top: 60px;" style="align-items:center;">
+    <div class="section-content section-content-p30" style="align-items:center;">
+        <div class="container-fluid" >
+            <div class="row" style="align-self: center;">
+
+                <!-- loop over the collection of products -->
+               
+                
+                <div *ngFor="let subclub of subclubs | filter:term" class="col-md-3" >
+
+
+                        <div class="card" style="width: 18rem; margin: 20px;">
+                            <a   routerLink="#" (click)="openSubclubPage(subclub.id)" style="align-self: center;" >
+                            <img class="card-img-top"  src={{subclub.imageurl}} width="80" height="150" alt="Card image cap">  </a>
+                            <div class="card-body">
+                                <a routerLink="#" (click)="openSubclubPage(subclub.id)" style="align-self: center;">
+                              <h2 class="card-title">{{ subclub.subClubName }}</h2> </a>
+                              <p class="card-text">{{ subclub.description }}</p>
+                            </div>
+                          </div>
+    
+    
+                </div>
+
+                <div *ngIf="subclubs?.length == 0" class="alert alert-warning col-md-12" role="alert">
+                    You haven't joined any subclub yet
+                </div>
+
+            </div>
+
+            
+
+        </div>
+    </div>
+</div>
+

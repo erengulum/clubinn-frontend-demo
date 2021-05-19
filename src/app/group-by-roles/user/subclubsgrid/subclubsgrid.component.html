@@ -13,14 +13,27 @@
                 <div *ngFor="let subclub of subclubs | filter:term" class="col-md-3" >
 
 
-                        <div class="card" style="width: 18rem; margin: 20px;">
+                        <div class="card" style="width: 18rem; margin: 20px;" *ngIf="isExists(subclub.id)" 
+                        >
                             <a  routerLink="#" style="align-self: center;" >
                             <img class="card-img-top"  src={{subclub.imageurl}} width="80" height="150" alt="Card image cap">  </a>
                             <div class="card-body">
                                 <a routerLink="#" style="align-self: center;">
                               <h2 class="card-title">{{ subclub.subClubName }}</h2> </a>
                               <p class="card-text">{{ subclub.description }}</p>
-                              <a routerLink="#" class="btn btn-primary" (click)="chat()">Join</a>
+                              <a routerLink="#" class="btn btn-primary" (click)="join(subclub.id)">Join</a>
+                            </div>
+                          </div>
+
+                          <div class="card" style="width: 18rem; margin: 20px;" *ngIf="!isExists(subclub.id)" 
+                        >
+                            <a  routerLink="#" style="align-self: center;" >
+                            <img class="card-img-top"  src={{subclub.imageurl}} width="80" height="150" alt="Card image cap">  </a>
+                            <div class="card-body">
+                                <a routerLink="#" style="align-self: center;">
+                              <h2 class="card-title">{{ subclub.subClubName }}</h2> </a>
+                              <p class="card-text">{{ subclub.description }}</p>
+                              <a routerLink="#" class="btn btn-success" (click)="gotoSubclubPage(subclub.id)">Go</a>
                             </div>
                           </div>
     

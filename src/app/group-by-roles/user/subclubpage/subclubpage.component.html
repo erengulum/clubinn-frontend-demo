@@ -1,0 +1,194 @@
+
+
+
+<!DOCTYPE html>
+<html class=''>
+
+<head>
+
+	<script
+		src='//production-assets.codepen.io/assets/editor/live/console_runner-079c09a0e3b9ff743e39ee2d5637b9216b3545af0de366d4b9aad9dc87e26bfd.js'></script>
+	<script
+		src='//production-assets.codepen.io/assets/editor/live/events_runner-73716630c22bbc8cff4bd0f07b135f00a0bdc5d14629260c3ec49e5606f98fdd.js'></script>
+	<script
+		src='//production-assets.codepen.io/assets/editor/live/css_live_reload_init-2c0dc5167d60a5af3ee189d570b1835129687ea2a61bee3513dee3a50c115a77.js'></script>
+	<meta charset='UTF-8'>
+	<meta name="robots" content="noindex">
+
+
+	<script src="https://use.typekit.net/hoy3lrg.js"></script>
+	<script>try { Typekit.load({ async: true }); } catch (e) { }</script>
+	<link rel='stylesheet prefetch' href='https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css'>
+	<link rel='stylesheet prefetch'
+		href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.2/css/font-awesome.min.css'>
+</head>
+
+<body>
+	<!-- 
+
+A concept for a chat interface. 
+
+SOURCE FOR THE MESSAGE PAGE DESIGN:  https://bootsnipp.com/snippets/35mvD
+-->
+
+	<div class="split left">
+
+
+		<div id="frame">
+			<div id="sidepanel">
+
+				<div id="search">
+					<label for=""><i class="fa fa-search" aria-hidden="true"></i></label>
+					<input type="text" class="form-control" placeholder="Search Here" [(ngModel)]="term">
+				</div>
+
+
+				<div id="contacts">
+					<ul *ngFor="let member of subclubMembers | filter:term">
+
+						<li class="contact">
+							<div class="wrap">
+								<img src="https://www.pngfind.com/pngs/m/470-4703547_icon-user-icon-hd-png-download.png"
+									alt="" />
+								<div class="meta">
+									<p class="name">{{member.firstName}} {{member.surname}}</p>
+								</div>
+							</div>
+						</li>
+
+					</ul>
+				</div>
+
+
+
+				<div id="bottom-bar">
+					<button id="settings"><i class="fa fa-cog fa-fw" aria-hidden="true"></i>
+						<span>Settings</span></button>
+				</div>
+			</div>
+
+
+
+
+
+
+			<div class="content">
+				<div class="contact-profile">
+					<p> Group Messages</p>
+					<div class="social-media">
+						<i class="fa fa-facebook" aria-hidden="true"></i>
+						<i class="fa fa-twitter" aria-hidden="true"></i>
+						<i class="fa fa-instagram" aria-hidden="true"></i>
+					</div>
+				</div>
+				<div class="messages">
+					<ul *ngFor="let msg of messageHistory">
+
+
+						<li class="sent" *ngIf="!isMyMessage(msg)">
+							<p>{{msg.content}}</p>
+							<span class="time_date"> {{msg.user.firstName}} {{msg.user.surname}} </span>
+						</li>
+
+
+						<li class="replies" *ngIf="isMyMessage(msg)">
+							<p>{{msg.content}}</p>
+						</li>
+
+
+
+					</ul>
+				</div>
+				<div class="message-input">
+
+					<div class="wrap">
+
+						<form [formGroup]="messageForm" (ngSubmit)="sendMessage()">
+							<div class="form-group">
+								<input type="text" formControlName="content" class="input" style="width: 610px;"
+									placeholder="Write your message..." />
+								<button class="submit" [disabled]="loading" type="submit"><i class="fa fa-paper-plane"
+										aria-hidden="true"></i></button>
+
+							</div>
+
+
+
+
+							<div *ngIf="error" class="alert alert-danger">{{error}}</div>
+
+
+						</form>
+
+
+					</div>
+
+				</div>
+			</div>
+
+
+		</div>
+	</div>
+
+	<div class="split right">
+		<div class="list-group " style="height: 600px; width: 400px; padding:10px; background-color:grey;" pad>
+			<h3 style="align-self: center; color:white;">Announcements</h3>
+			<button class="btn btn-success" style="float: right; margin-bottom: 20px;" (click)="open(requests)"  *ngIf="isSubclubAdmin()"><i
+					class="fa fa-plus"></i> New Announcement</button>
+
+			<div *ngFor="let annon of announcements | filter:term">
+				<!--https://getbootstrap.com/docs/4.0/components/list-group/-->
+				<a href="#" class="list-group-item list-group-item-action flex-column align-items-start active">
+					<div class="d-flex w-100 justify-content-between">
+						<h5 class="mb-1">{{annon.headline}}</h5>
+					</div>
+					<p class="mb-1">{{annon.content}}</p>
+				</a>
+				<br>
+			</div>
+		</div>
+
+	</div>
+
+
+
+</body>
+
+
+<ng-template #requests let-modal>
+
+	<div class="modal-header" >
+		<h4 class="modal-title" id="modal-basic-title" >Create a New Announcement</h4>
+			<button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+				<span aria-hidden="true">&times;</span>
+			</button>
+
+
+	</div>
+
+	<div class="modal-body">
+		<div class="form">
+
+			<form [formGroup]="announcementForm" (ngSubmit)="saveAnnouncement()">
+				<div class="form-group">
+					<label>Announcement Headline</label>
+					<input type="text" formControlName="headline" class="form-control" />
+				</div>
+
+				<div class="form-group">
+					<label>Announcement Content</label>
+					<input type="text" formControlName="content" class="form-control" style="height:150px;" />
+				</div>
+
+				<div class="form-group">
+					<button [disabled]="loading" type="submit" class="btn btn-primary">Save</button>
+
+				</div>
+
+				<div *ngIf="error" class="alert alert-danger">{{error}}</div>
+
+
+			</form>
+		</div>
+	</div>
+</ng-template>
