@@ -4,6 +4,7 @@ import { SubClubDto } from 'src/app/entity/subclubdto';
 import { SubclubService } from 'src/app/services/subclubservice';
 import {NgbModal, ModalDismissReasons} from '@ng-bootstrap/ng-bootstrap';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import { User } from 'src/app/entity/user';
 
 
 @Component({
@@ -15,7 +16,10 @@ export class SubClubCRUDComponent implements OnInit {
   term: string;
 
   dataSource: SubClubDto[];
+  memberList: User[] = [];
   subclubForm: FormGroup;
+  currentSubclubId;
+  currentAdmin: User;
 
   constructor(private formBuilder: FormBuilder, public httpClient: HttpClient,
      private subclubService:SubclubService, private modalService: NgbModal) { 
@@ -87,6 +91,7 @@ private getDismissReason(reason: any): string {
   if (reason === ModalDismissReasons.ESC) {
     return 'by pressing ESC';
   } else if (reason === ModalDismissReasons.BACKDROP_CLICK) {
+    
     return 'by clicking on a backdrop';
   } else {
     return `with: ${reason}`;
@@ -111,9 +116,59 @@ public save(): void {
 }
 
 
+openAdminList(content,subclubId){
+  this.currentSubclubId = subclubId;
+  this.getAdmin();
+  this.getSubclubMemberList();
+
+  this.modalService.open(content, {ariaLabelledBy: 'modal-basic-title'}).result.then((result) => {
+    this.closeResult = `Closed with: ${result}`;
+    this.ngOnInit();
+
+  }, (reason) => {
+    this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
+    this.ngOnInit();
+
+  });
+  
 
 
+}
 
 
+getSubclubMemberList(){
+  this.subclubService.getMembersBySubclubId(this.currentSubclubId).subscribe(
+    (data)=>{
+      this.memberList = data;
+    },
+    (error)=>{
+      alert('Bu kulüpte hiç üye bulunmamaktadır!');
+    }
+  );
+
+}
+
+assignAdmin(userId){
+  this.subclubService.assignAdmin(this.currentSubclubId,userId).subscribe(
+    (data)=>{
+      alert('New admin is successfully assigned!');
+    },
+    (error)=>{
+      alert('Bir hata meydana geldi lütfen tekrar deneyiniz!');
+    }
+  );
+}
+
+getAdmin(){
+
+  this.subclubService.getAdmin(this.currentSubclubId).subscribe(
+    (data)=>{
+      this.currentAdmin = data;
+    },
+    (error)=>{
+    }
+  );
+
+}
 
 }

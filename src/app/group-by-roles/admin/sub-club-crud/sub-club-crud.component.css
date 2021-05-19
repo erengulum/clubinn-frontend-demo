@@ -60,7 +60,7 @@ table.table tr th:first-child {
 	width: 100px;
 }
 table.table tr th:last-child {
-	width: 150px;
+	width: 300px;
 }
 table.table-striped tbody tr:nth-of-type(odd) {
 	background-color: #fcfcfc;
