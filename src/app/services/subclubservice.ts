@@ -28,7 +28,9 @@ export class SubclubService {
         return this.http.delete<any>(`${environment.API_BASE_PATH}/subclubs/delete/${categoryId}`);
 
     }
+    
 
+  
     
 
     saveSubclub(subclub:any){
@@ -54,7 +56,7 @@ export class SubclubService {
 
         return this.http.get<any>(`${environment.API_BASE_PATH}/subclubs/getmembers/${subclubId}`);
     }
-
+    
 
     getAllAnnouncements(subclubId){
 
@@ -64,6 +66,22 @@ export class SubclubService {
 
     saveAnnouncement(announcementDto, subclubId){
         return this.http.post<any>(`${environment.API_BASE_PATH}/subclubs/announcements/create/${subclubId}`,announcementDto);
+
+    }
+
+    saveFeedback(announcementDto, subclubId,username){
+        return this.http.post<any>(`${environment.API_BASE_PATH}/subclubs/feedbacks/create/${subclubId}/${username}`,announcementDto);
+
+    }
+
+    getFeedbacksBySubclubId(subclubId){
+
+        return this.http.get<any>(`${environment.API_BASE_PATH}/subclubs/feedbacks/all/${subclubId}`);
+    }
+
+    deleteFeedbackById(feedbackId:string){
+
+        return this.http.delete<any>(`${environment.API_BASE_PATH}/subclubs/feedbacks/delete/${feedbackId}`);
 
     }
 
