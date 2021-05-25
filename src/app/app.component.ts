@@ -32,6 +32,10 @@ export class AppComponent {
         return this.currentUser && this.currentUser.role === Role.User;
     }
 
+    get notLogged() {
+        return this.currentUser===null;
+    }
+
     logout() {
         this.authenticationService.logout();
         this.router.navigate(['/login']);

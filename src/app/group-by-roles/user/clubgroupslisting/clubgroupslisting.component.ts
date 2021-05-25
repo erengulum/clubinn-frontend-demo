@@ -8,6 +8,8 @@ import { ClubCategoryService } from 'src/app/services/clubcategoryservice';
 import {NgbModal, ModalDismissReasons} from '@ng-bootstrap/ng-bootstrap';
 import { ClubCategoryRequestDto } from 'src/app/entity/ClubCategoryRequestDto';
 import {first} from 'rxjs/operators';
+import { TokenDto } from 'src/app/entity/tokendto';
+import { AuthenticationService } from 'src/app/services/security/authentication.service';
 declare var $: any;
 
 @Component({
@@ -19,6 +21,8 @@ export class ClubgroupslistingComponent implements OnInit {
 
   term: string;
   requestList:ClubCategoryRequestDto[];
+  currentUser: TokenDto;
+
 
   loading = false;
   submitted = false;
@@ -42,9 +46,10 @@ export class ClubgroupslistingComponent implements OnInit {
   categoryRequestForm: FormGroup;
 
 
-  constructor(public httpClient: HttpClient, private clubcategoryService:ClubCategoryService,
+  constructor(public httpClient: HttpClient, private clubcategoryService:ClubCategoryService,  private authenticationService: AuthenticationService,
     private formBuilder: FormBuilder, private modalService: NgbModal) { 
 
+      this.authenticationService.currentUser.subscribe(x => this.currentUser = x);
 
       this.categoryRequestForm = this.formBuilder.group({
         clubCategoryName: ['', Validators.required],

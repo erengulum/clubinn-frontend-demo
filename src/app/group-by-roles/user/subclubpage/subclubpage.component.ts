@@ -29,17 +29,17 @@ export class SubclubpageComponent implements OnInit {
 
   
   message: MessageDto;
-  announcements:Announcement[];
+  announcements:Announcement[] = [];
   announcementForm: FormGroup;
 
 
   messageForm: FormGroup;
-  messageHistory: MessageHistoryDto[];
+  messageHistory: MessageHistoryDto[] = [];
 
 
   currentUser: TokenDto;
   subclubId;
-  subclubMembers: User[];
+  subclubMembers: User[] = [];
   subclubAdmin:User;
 
   loading = false;
@@ -87,7 +87,7 @@ export class SubclubpageComponent implements OnInit {
     
 
 
-    this.messageservice.sendMessage(this.messageForm.getRawValue(),this.subclubId)
+    this.messageservice.sendMessage(this.messageForm.getRawValue(),this.subclubId,this.currentUser.username)
     .pipe()
     .subscribe(
       data => {
@@ -144,6 +144,7 @@ private getDismissReason(reason: any): string {
 
 
 isMyMessage(msg:MessageHistoryDto): boolean {
+
   return msg.user.username === this.currentUser.username;
 }
 
@@ -160,7 +161,10 @@ getAdmin(){
 
 
 isSubclubAdmin(): boolean {
-  console.log("subclub admin",this.subclubAdmin.username, "kullanici: ",this.currentUser.username)
+  if(this.subclubAdmin==null){
+    return false;
+  }
+
   return this.subclubAdmin.username === this.currentUser.username;
 }
 
@@ -171,7 +175,6 @@ getMembers(){
   this.subclubService.getMembersBySubclubId(this.subclubId).subscribe(
     (data)=>{
       this.subclubMembers = data;
-      console.log("Members: ", this.subclubMembers);
     },
     (error)=>{
     }
@@ -184,7 +187,6 @@ getAnnouncements = ()=>{
   this.subclubService.getAllAnnouncements(this.subclubId).subscribe(
     (data)=>{
       this.announcements = data;
-      console.log("Mesajlar: ", this.messageHistory);
     },
     (error)=>{
     }

@@ -74,7 +74,6 @@ SOURCE FOR THE MESSAGE PAGE DESIGN:  https://bootsnipp.com/snippets/35mvD
 
 			<div class="content">
 				<div class="contact-profile">
-					<p> Group Messages</p>
 					<div class="social-media">
 						<i class="fa fa-facebook" aria-hidden="true"></i>
 						<i class="fa fa-twitter" aria-hidden="true"></i>
@@ -87,7 +86,7 @@ SOURCE FOR THE MESSAGE PAGE DESIGN:  https://bootsnipp.com/snippets/35mvD
 
 						<li class="sent" *ngIf="!isMyMessage(msg)">
 							<p>{{msg.content}}</p>
-							<span class="time_date"> {{msg.user.firstName}} {{msg.user.surname}} </span>
+							<span class="time_date" style="padding-bottom: 30px;"> {{msg.user.firstName}} {{msg.user.surname}} </span>
 						</li>
 
 
