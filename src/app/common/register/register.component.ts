@@ -5,6 +5,7 @@ import {first} from 'rxjs/operators';
 import {AuthenticationService} from "../../services/security/authentication.service";
 import { MustMatch } from '../../helpers/must-match.validator';
 import {MatButtonModule} from '@angular/material/button';
+import { ResponseMessage } from 'src/app/entity/responseMessage';
 
 
 @Component({
@@ -17,6 +18,8 @@ export class RegisterComponent implements OnInit {
   loading = false;
   submitted = false;
   error = '';
+
+  response:ResponseMessage;
 
   constructor(private formBuilder: FormBuilder,
               private router: Router,
@@ -47,12 +50,18 @@ export class RegisterComponent implements OnInit {
       return;
     }
 
-    this.loading = true;
     this.authenticationService.register(this.registerForm.value)
       .pipe(first())
       .subscribe(
         data => {
-          this.router.navigate(['/login']);
+          this.response = data;
+          if(this.response.responseType===0){
+              alert(this.response.responseMessage);
+          }
+          else{
+            alert(this.response.responseMessage);
+            this.router.navigate(['/login']);
+          }
         },
         error => {
           this.error = error;

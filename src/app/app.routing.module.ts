@@ -47,9 +47,18 @@ const routes: Routes = [
       { path: 'subclubs', component: SubClubCRUDComponent }
     ]
   },
+
+  {
+    path: 'unregistered',
+    children: [
+      { path: '', redirectTo: 'categories', pathMatch: 'full' },
+      { path: 'categories', component: ClubgroupslistingComponent },
+      { path: 'categories/subclubs/:categoryId', component: SubclubsgridComponent }
+    ]
+  },
   {path: 'login', component: LoginComponent},
   {path: 'register', component: RegisterComponent},
-  { path: '', redirectTo: 'login', pathMatch: 'full' },
+  //{ path: '', redirectTo: 'login', pathMatch: 'full' },
 ];
 
 @NgModule({

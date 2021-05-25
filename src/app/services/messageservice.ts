@@ -10,8 +10,8 @@ import { MessageDto } from '../entity/messagedto';
 export class MessageService{
     constructor(private http: HttpClient) { }
 
-    sendMessage(message: MessageDto, subgroupId:number){
-        return this.http.post<any>(`${environment.API_BASE_PATH}/chat/sendbysubgroup/${subgroupId}`,message);
+    sendMessage(message: MessageDto, subgroupId:number,username){
+        return this.http.post<any>(`${environment.API_BASE_PATH}/chat/sendbysubgroup/${subgroupId}/${username}`,message);
     }
 
 

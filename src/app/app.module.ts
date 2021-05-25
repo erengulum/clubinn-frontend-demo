@@ -33,6 +33,10 @@ import { Ng2SearchPipeModule } from 'ng2-search-filter';
 import { ChatComponent } from './group-by-roles/user/chat/chat.component';
 import { SubclubpageComponent } from './group-by-roles/user/subclubpage/subclubpage.component';
 import { SubclubmembershipComponent } from './group-by-roles/user/subclubmembership/subclubmembership.component';
+import { UnregisteredMemberComponent } from './group-by-roles/unregistered-member/unregistered-member.component';
+import { HomepageComponent } from './group-by-roles/unregistered-member/homepage/homepage.component';
+import { UnregisteredLayoutComponent } from './group-by-roles/unregistered-member/unregistered-layout/unregistered-layout.component';
+import { HeaderComponent } from './group-by-roles/unregistered-member/unregistered-layout/header/header.component';
 
 
 
@@ -60,6 +64,10 @@ import { SubclubmembershipComponent } from './group-by-roles/user/subclubmembers
     ChatComponent,
     SubclubpageComponent,
     SubclubmembershipComponent,
+    UnregisteredMemberComponent,
+    HeaderComponent,
+    HomepageComponent,
+    UnregisteredLayoutComponent,
     
       ],
   imports: [

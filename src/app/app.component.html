@@ -10,8 +10,11 @@
         <app-user-layout></app-user-layout>
     </div>
 
+
 </div>
 
-<div >
-    <router-outlet></router-outlet>
+<div *ngIf="!currentUser">    
+    <app-unregistered-layout></app-unregistered-layout>
 </div>
+
+<router-outlet></router-outlet>
