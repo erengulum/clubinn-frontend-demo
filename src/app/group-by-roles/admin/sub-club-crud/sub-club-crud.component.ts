@@ -5,6 +5,7 @@ import { SubclubService } from 'src/app/services/subclubservice';
 import {NgbModal, ModalDismissReasons} from '@ng-bootstrap/ng-bootstrap';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import { User } from 'src/app/entity/user';
+import { Feedback } from 'src/app/entity/feedback';
 
 
 @Component({
@@ -17,6 +18,8 @@ export class SubClubCRUDComponent implements OnInit {
 
   dataSource: SubClubDto[];
   memberList: User[] = [];
+  feedbackList: Feedback[] = [];
+
   subclubForm: FormGroup;
   currentSubclubId;
   currentAdmin: User;
@@ -135,6 +138,51 @@ openAdminList(content,subclubId){
 
 }
 
+openFeedbackList(content,subclubId){
+  this.currentSubclubId = subclubId;
+  this.getFeedbacks();
+
+  this.modalService.open(content, {ariaLabelledBy: 'modal-basic-title'}).result.then((result) => {
+    this.closeResult = `Closed with: ${result}`;
+    this.ngOnInit();
+
+  }, (reason) => {
+    this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
+    this.ngOnInit();
+
+  });
+  
+
+}
+
+
+
+getFeedbacks(){
+  this.subclubService.getFeedbacksBySubclubId(this.currentSubclubId).subscribe(
+    (data)=>{
+      this.feedbackList = data;
+    },
+    (error)=>{
+      alert('Bu kulüpte hiç üye bulunmamaktadır!');
+    }
+  );
+
+}
+
+deleteFeedbackById(feedbackId){
+  this.subclubService.deleteFeedbackById(feedbackId).subscribe(
+    (data)=>{
+      alert('Feedback is deleted!');
+      this.getFeedbacks();
+    },
+    (error)=>{
+      alert('There is a problem! Please try again');
+    }
+  );
+
+}
+
+
 
 getSubclubMemberList(){
   this.subclubService.getMembersBySubclubId(this.currentSubclubId).subscribe(
@@ -147,6 +195,10 @@ getSubclubMemberList(){
   );
 
 }
+
+
+
+
 
 assignAdmin(userId){
   this.subclubService.assignAdmin(this.currentSubclubId,userId).subscribe(

@@ -64,6 +64,8 @@ SOURCE FOR THE MESSAGE PAGE DESIGN:  https://bootsnipp.com/snippets/35mvD
 				<div id="bottom-bar">
 					<button id="settings"><i class="fa fa-cog fa-fw" aria-hidden="true"></i>
 						<span>Settings</span></button>
+						<button id="settings"  (click)="open(feedbackmodal)"><i class="w3-button w3-teal" aria-hidden="true"></i>
+							<span>Feedback</span></button>
 				</div>
 			</div>
 
@@ -181,6 +183,52 @@ SOURCE FOR THE MESSAGE PAGE DESIGN:  https://bootsnipp.com/snippets/35mvD
 
 				<div class="form-group">
 					<button [disabled]="loading" type="submit" class="btn btn-primary">Save</button>
+
+				</div>
+
+				<div *ngIf="error" class="alert alert-danger">{{error}}</div>
+
+
+			</form>
+		</div>
+	</div>
+</ng-template>
+
+
+<ng-template #feedbackmodal let-modal>
+
+	<div class="modal-header" >
+		<h4 class="modal-title" id="modal-basic-title" >Send a New Feedback</h4>
+			<button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+				<span aria-hidden="true">&times;</span>
+			</button>
+
+
+	</div>
+
+	<div class="modal-body">
+		<div class="form">
+
+			<form [formGroup]="feedbackForm" (ngSubmit)="saveFeedback()">
+
+				<div class="form-group">
+					<label>Feedback Type: </label> <br>
+					<select id="feedbackType" name="feedbackType" formControlName="feedbackType">
+						<option value="report">Report</option>
+						<option value="advice">Advice</option>
+						<option value="complaint">Complaint</option>
+						<option value="other">Other</option>
+					  </select>
+
+				</div>
+
+				<div class="form-group">
+					<label>Feedback Content</label>
+					<input type="text" formControlName="comment" class="form-control" style="height:150px;" />
+				</div>
+
+				<div class="form-group">
+					<button [disabled]="loading" type="submit" class="btn btn-primary">Send</button>
 
 				</div>
 

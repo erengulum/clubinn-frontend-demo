@@ -36,6 +36,7 @@ export class SubclubpageComponent implements OnInit {
   messageForm: FormGroup;
   messageHistory: MessageHistoryDto[] = [];
 
+  feedbackForm:FormGroup;
 
   currentUser: TokenDto;
   subclubId;
@@ -66,6 +67,11 @@ export class SubclubpageComponent implements OnInit {
     this.announcementForm = this.formBuilder.group({
       headline: [''],
       content:[''], 
+    });
+
+    this.feedbackForm = this.formBuilder.group({
+      feedbackType: [''],
+      comment:[''], 
     });
 
     
@@ -160,6 +166,9 @@ getAdmin(){
 }
 
 
+
+
+
 isSubclubAdmin(): boolean {
   if(this.subclubAdmin==null){
     return false;
@@ -205,6 +214,7 @@ saveAnnouncement(){
   .pipe()
   .subscribe(
     data => {
+      alert('Announcement is successfully added');
       this.getAnnouncements();
       
     },
@@ -215,5 +225,29 @@ saveAnnouncement(){
 
 }
 
+
+saveFeedback(){
+  if (this.feedbackForm.invalid) {
+    // stop here if it's invalid
+    alert('Invalid feedback');
+    return;
+}
+
+this.subclubService.saveFeedback(this.feedbackForm.getRawValue(), this.subclubId,this.currentUser.username)
+.pipe()
+.subscribe(
+  data => {
+    alert("Thank You! We successfully received your feedback.")
+    
+  },
+  error => {
+    this.error = error;
+    this.loading = false;
+  });
+
+
+
+
+}
 
 }
