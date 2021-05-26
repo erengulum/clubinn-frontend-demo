@@ -1,12 +1,15 @@
 /* Style the header with a grey background and some padding */
+
 .header {
     overflow: hidden;
     background-color: #7FFFD4;
     padding: 20px 10px;
-  }
-  
-  /* Style the header links */
-  .header a {
+}
+
+
+/* Style the header links */
+
+.header a {
     float: left;
     color: black;
     text-align: center;
@@ -15,39 +18,87 @@
     font-size: 18px;
     line-height: 25px;
     border-radius: 4px;
-  }
-  
-  /* Style the logo link (notice that we set the same value of line-height and font-size to prevent the header to increase when the font gets bigger */
-  .header a.logo {
+}
+
+
+/* Style the logo link (notice that we set the same value of line-height and font-size to prevent the header to increase when the font gets bigger */
+
+.header a.logo {
     font-size: 25px;
     font-weight: bold;
-  }
-  
-  /* Change the background color on mouse-over */
-  .header a:hover {
+}
+
+
+/* Change the background color on mouse-over */
+
+.header a:hover {
     background-color: #7050D4;
     color: black;
-  }
-  
-  /* Style the active/current link*/
-  .header a.active {
+}
+
+
+/* Style the active/current link*/
+
+.header a.active {
     background-color: dodgerblue;
     color: white;
-  }
-  
-  /* Float the link section to the right */
-  .header-right {
+}
+
+
+/* Float the link section to the right */
+
+.header-right {
     float: right;
-  }
-  
-  /* Add media queries for responsiveness - when the screen is 500px wide or less, stack the links on top of each other */
-  @media screen and (max-width: 500px) {
+}
+
+
+/* Add media queries for responsiveness - when the screen is 500px wide or less, stack the links on top of each other */
+
+@media screen and (max-width: 500px) {
     .header a {
-      float: none;
-      display: block;
-      text-align: left;
+        float: none;
+        display: block;
+        text-align: left;
     }
     .header-right {
-      float: none;
+        float: none;
     }
-  }
+}
+
+.dropbtn {
+    background-color: #4CAF50;
+    color: white;
+    padding: 16px;
+    font-size: 16px;
+    border: none;
+    cursor: pointer;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+    z-index: 1;
+}
+
+.dropdown-content a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+    cursor: pointer;
+}
+
+.dropdown-content a:hover {
+    background-color: #f1f1f1
+}
+
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+.dropdown:hover .dropbtn {
+    background-color: #3e8e41;
+}

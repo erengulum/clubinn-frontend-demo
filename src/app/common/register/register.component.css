@@ -1,5 +1,4 @@
-.note
-{
+.note {
     text-align: center;
     height: 80px;
     background: -webkit-linear-gradient(left, #005299, #8811c5);
@@ -7,19 +6,20 @@
     font-weight: bold;
     line-height: 80px;
 }
-.form-content
-{
+
+.form-content {
     padding: 5%;
     border: 1px solid #ced4da;
     margin-bottom: 2%;
 }
-.form-control{
-    border-radius:1.5rem;
+
+.form-control {
+    border-radius: 1.5rem;
 }
-.btnSubmit
-{
-    border:none;
-    border-radius:2.0rem;
+
+.btnSubmit {
+    border: none;
+    border-radius: 2.0rem;
     padding: 1%;
     width: 20%;
     cursor: pointer;
@@ -27,7 +27,9 @@
     color: #fff;
     transition-duration: 0.4s;
 }
+
 .btnSubmit:hover {
-    background-color: #1f08f3; /* Blue */
+    background-color: #1f08f3;
+    /* Blue */
     color: white;
-  }
+}

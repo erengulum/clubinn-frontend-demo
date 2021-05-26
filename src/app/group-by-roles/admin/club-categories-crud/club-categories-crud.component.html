@@ -5,7 +5,7 @@
 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
-    
+
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -31,20 +31,20 @@
             <div class="table-wrapper">
                 <div class="table-title">
                     <div class="row">
-                        <div class="col-sm-6">
+                        <div class="col-sm-7">
                             <h2> <b> Club Categories</b></h2>
                         </div>
-                        <div class="col-sm-6">
+                        <div class="col-sm-5">
 
                             <button class="btn btn-success" (click)="open(content)">Add New Club Category</button>
 
                             <button class="btn btn-primary" (click)="open(requests)">List Club Category
                                 Requests</button>
-                                
+
                         </div>
                     </div>
                 </div>
-                
+
                 <input type="text" class="form-control" placeholder="Search Here" [(ngModel)]="term">
 
                 <table id="myTable" class="table table-striped table-hover">
@@ -61,7 +61,7 @@
                     <tr *ngFor="let club of dataSource  | filter:term">
 
                         <td> {{club.id}}</td>
-                        <td>  <img class="img-responsive" src={{club.imageurl}} width="60" height="30"></td>
+                        <td> <img class="img-responsive" src={{club.imageurl}} width="110" height="100"></td>
                         <td> {{club.clubCategoryName}}</td>
                         <td> {{club.description}}</td>
                         <td>
@@ -82,7 +82,7 @@
 
 
 
-    
+
 
 
 
@@ -95,22 +95,22 @@
 
 <script>
     function myFunction() {
-      var input, filter, table, tr, td, i, txtValue;
-      input = document.getElementById("myInput");
-      filter = input.value.toUpperCase();
-      table = document.getElementById("myTable");
-      tr = table.getElementsByTagName("tr");
-      for (i = 0; i < tr.length; i++) {
-        td = tr[i].getElementsByTagName("td")[1];
-        if (td) {
-          txtValue = td.textContent || td.innerText;
-          if (txtValue.toUpperCase().indexOf(filter) > -1) {
-            tr[i].style.display = "";
-          } else {
-            tr[i].style.display = "none";
-          }
-        }       
-      }
+        var input, filter, table, tr, td, i, txtValue;
+        input = document.getElementById("myInput");
+        filter = input.value.toUpperCase();
+        table = document.getElementById("myTable");
+        tr = table.getElementsByTagName("tr");
+        for (i = 0; i < tr.length; i++) {
+            td = tr[i].getElementsByTagName("td")[1];
+            if (td) {
+                txtValue = td.textContent || td.innerText;
+                if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                    tr[i].style.display = "";
+                } else {
+                    tr[i].style.display = "none";
+                }
+            }
+        }
     }
 </script>
 
@@ -164,7 +164,7 @@
 
 
 <ng-template #requests let-modal>
-    <div class="modal-header" >
+    <div class="modal-header">
         <h4 class="modal-title" id="modal-basic-title">Request List</h4>
         <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
             <span aria-hidden="true">&times;</span>
@@ -195,7 +195,7 @@
                 <td> {{request.numberOfVotes}}</td>
                 <td>
 
-                    <button class="approvebtn" (click)="convertToClubCategory(request)" ><i 
+                    <button class="approvebtn" (click)="convertToClubCategory(request)"><i 
                         class="fa fa-trash" >Add</i></button>
 
                     <button class="deletebtn" (click)="deleteRequest(request.req_id)"><i

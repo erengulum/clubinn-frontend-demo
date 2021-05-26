@@ -15,6 +15,7 @@ import { SubclubsgridComponent } from "./group-by-roles/user/subclubsgrid/subclu
 import { ChatComponent } from "./group-by-roles/user/chat/chat.component";
 import { SubclubmembershipComponent } from "./group-by-roles/user/subclubmembership/subclubmembership.component";
 import { SubclubpageComponent } from "./group-by-roles/user/subclubpage/subclubpage.component";
+import { QuestionnaireComponent } from "./common/questionnaire/questionnaire.component";
 
 
 const routes: Routes = [
@@ -32,7 +33,9 @@ const routes: Routes = [
       { path: 'subclub/:subClubId', component: SubclubpageComponent },
       { path: 'categories', component: ClubgroupslistingComponent },
       { path: 'categories/subclubs/:categoryId', component: SubclubsgridComponent },
-      { path: 'categories/subclubs/:categoryId/chat', component: ChatComponent }
+      { path: 'categories/subclubs/:categoryId/chat', component: ChatComponent },
+      { path: 'questionnaire', component: QuestionnaireComponent}
+      
 
     ]
   },
@@ -49,7 +52,7 @@ const routes: Routes = [
   },
   {path: 'login', component: LoginComponent},
   {path: 'register', component: RegisterComponent},
-  { path: '', redirectTo: 'login', pathMatch: 'full' },
+  { path: '', redirectTo: 'login', pathMatch: 'full' }
 ];
 
 @NgModule({

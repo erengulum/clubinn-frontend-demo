@@ -1,3 +1,3 @@
-export class MessageDto{
+export class MessageDto {
     content: string;
 }

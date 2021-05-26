@@ -29,17 +29,18 @@ export class SubclubpageComponent implements OnInit {
 
   
   message: MessageDto;
-  announcements:Announcement[];
+  announcements:Announcement[] = [];
   announcementForm: FormGroup;
 
 
   messageForm: FormGroup;
-  messageHistory: MessageHistoryDto[];
+  messageHistory: MessageHistoryDto[] = [];
 
+  feedbackForm:FormGroup;
 
   currentUser: TokenDto;
   subclubId;
-  subclubMembers: User[];
+  subclubMembers: User[] = [];
   subclubAdmin:User;
 
   loading = false;
@@ -68,6 +69,11 @@ export class SubclubpageComponent implements OnInit {
       content:[''], 
     });
 
+    this.feedbackForm = this.formBuilder.group({
+      feedbackType: [''],
+      comment:[''], 
+    });
+
     
     this.authenticationService.currentUser.subscribe(x => this.currentUser = x);
     this.getMessageHistory();
@@ -87,7 +93,7 @@ export class SubclubpageComponent implements OnInit {
     
 
 
-    this.messageservice.sendMessage(this.messageForm.getRawValue(),this.subclubId)
+    this.messageservice.sendMessage(this.messageForm.getRawValue(),this.subclubId,this.currentUser.username)
     .pipe()
     .subscribe(
       data => {
@@ -144,6 +150,7 @@ private getDismissReason(reason: any): string {
 
 
 isMyMessage(msg:MessageHistoryDto): boolean {
+
   return msg.user.username === this.currentUser.username;
 }
 
@@ -159,8 +166,14 @@ getAdmin(){
 }
 
 
+
+
+
 isSubclubAdmin(): boolean {
-  console.log("subclub admin",this.subclubAdmin.username, "kullanici: ",this.currentUser.username)
+  if(this.subclubAdmin==null){
+    return false;
+  }
+
   return this.subclubAdmin.username === this.currentUser.username;
 }
 
@@ -171,7 +184,6 @@ getMembers(){
   this.subclubService.getMembersBySubclubId(this.subclubId).subscribe(
     (data)=>{
       this.subclubMembers = data;
-      console.log("Members: ", this.subclubMembers);
     },
     (error)=>{
     }
@@ -184,7 +196,6 @@ getAnnouncements = ()=>{
   this.subclubService.getAllAnnouncements(this.subclubId).subscribe(
     (data)=>{
       this.announcements = data;
-      console.log("Mesajlar: ", this.messageHistory);
     },
     (error)=>{
     }
@@ -203,6 +214,7 @@ saveAnnouncement(){
   .pipe()
   .subscribe(
     data => {
+      alert('Announcement is successfully added');
       this.getAnnouncements();
       
     },
@@ -213,5 +225,29 @@ saveAnnouncement(){
 
 }
 
+
+saveFeedback(){
+  if (this.feedbackForm.invalid) {
+    // stop here if it's invalid
+    alert('Invalid feedback');
+    return;
+}
+
+this.subclubService.saveFeedback(this.feedbackForm.getRawValue(), this.subclubId,this.currentUser.username)
+.pipe()
+.subscribe(
+  data => {
+    alert("Thank You! We successfully received your feedback.")
+    
+  },
+  error => {
+    this.error = error;
+    this.loading = false;
+  });
+
+
+
+
+}
 
 }

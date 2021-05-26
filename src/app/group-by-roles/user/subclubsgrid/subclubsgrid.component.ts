@@ -93,6 +93,7 @@ export class SubclubsgridComponent implements OnInit {
   }
 
 
+  
 
   join(subclubId) {
     this.joinDto.username = this.currentUser.username;
@@ -118,7 +119,6 @@ export class SubclubsgridComponent implements OnInit {
         return false;            
       }
     }
-
     //console.log("asagisi" + "==" + subclubId);
     return true;
   }
@@ -127,7 +127,10 @@ export class SubclubsgridComponent implements OnInit {
 
     this.router.navigate(['/user/subclub/' + subclubId]);
 
+  }
 
+  goToQuestionairePage(){
+    this.router.navigate(['/user/questionnaire']);
   }
 
 

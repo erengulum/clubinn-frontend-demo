@@ -14,45 +14,45 @@ export class UserHeaderComponent implements OnInit {
 
   currentUser: TokenDto;
 
-  constructor(         private router: Router,    private authenticationService: AuthenticationService) {
+  constructor(private router: Router, private authenticationService: AuthenticationService) {
     this.authenticationService.currentUser.subscribe(x => this.currentUser = x);
-   }
+  }
 
   ngOnInit(): void {
   }
 
   get isAdmin() {
     return this.currentUser && this.currentUser.role === Role.Admin;
-}
+  }
 
-get isUser() {
+  get isUser() {
     return this.currentUser && this.currentUser.role === Role.User;
-}
+  }
 
-logout() {
+  logout() {
     this.authenticationService.logout();
     this.router.navigate(['/login']);
-}
+  }
 
-profile() {
-  this.router.navigate(['/user/profile']);
-}
+  profile() {
+    this.router.navigate(['/user/profile']);
+  }
 
-settings() {
-  this.router.navigate(['/user/settings']);
-}
+  settings() {
+    this.router.navigate(['/user/settings']);
+  }
 
-homepage() {
-  this.router.navigate(['/user/home']);
-}
+  homepage() {
+    this.router.navigate(['/user/home']);
+  }
 
-clubcategories(){
-  this.router.navigate(['/user/categories']);
-}
+  clubcategories() {
+    this.router.navigate(['/user/categories']);
+  }
 
-mysubclubs(){
-  this.router.navigate(['/user/mysubclubs']);
-}
+  mysubclubs() {
+    this.router.navigate(['/user/mysubclubs']);
+  }
 
 
 }

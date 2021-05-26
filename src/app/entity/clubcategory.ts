@@ -1,10 +1,6 @@
-
-
 export class ClubCategoryDto {
     id: number;
-    imageurl:string;
+    imageurl: string;
     clubCategoryName: string;
     description: string;
-
-
 }

@@ -13,7 +13,7 @@ export class AdminHomepageComponent implements OnInit {
   constructor(private authenticationService: AuthenticationService) {
 
     this.authenticationService.currentUser.subscribe(x => this.currentUser = x);
-   }
+  }
 
 
   ngOnInit(): void {

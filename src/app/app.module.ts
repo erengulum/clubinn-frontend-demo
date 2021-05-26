@@ -33,10 +33,7 @@ import { Ng2SearchPipeModule } from 'ng2-search-filter';
 import { ChatComponent } from './group-by-roles/user/chat/chat.component';
 import { SubclubpageComponent } from './group-by-roles/user/subclubpage/subclubpage.component';
 import { SubclubmembershipComponent } from './group-by-roles/user/subclubmembership/subclubmembership.component';
-
-
-
-
+import { QuestionnaireComponent } from './common/questionnaire/questionnaire.component';
 
 @NgModule({
   declarations: [
@@ -60,6 +57,7 @@ import { SubclubmembershipComponent } from './group-by-roles/user/subclubmembers
     ChatComponent,
     SubclubpageComponent,
     SubclubmembershipComponent,
+    QuestionnaireComponent,
     
       ],
   imports: [

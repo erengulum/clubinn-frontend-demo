@@ -4,6 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="viewport" form="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>Bootstrap CRUD Data Table for Database with Modal Form</title>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto|Varela+Round">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
@@ -26,11 +27,14 @@
                             <h2> <b> Subclub Listing</b></h2>
                         </div>
 
-                        <div class="col-sm-6">
-                            <button class="btn btn-success" (click)="open(content)">Add New Subclub</button>
-
-
+                        <div class="form">
+                            <button class="btn btn-success" (click)="create(form)">Create Form</button>
                         </div>
+
+                        <div class="form">
+                            <button class="btn btn-success" (click)="open(content)">Add New Subclub</button>
+                        </div>
+
                     </div>
                 </div>
 
@@ -54,7 +58,7 @@
                         <tr *ngFor="let subclub of dataSource | filter:term">
 
                             <td> {{subclub.id}}</td>
-                            <td> <img class="img-responsive" src={{subclub.imageurl}} width="60" height="30"></td>
+                            <td> <img class="img-responsive" src={{subclub.imageurl}} width="80" height="70"></td>
                             <td> {{subclub.subClubName}}</td>
                             <td> {{subclub.description}}</td>
                             <td>
@@ -63,7 +67,8 @@
                                 <button class="btn" (click)="deleteSubClub(subclub.id)"><i
                                         class="fa fa-trash"></i></button>
 
-                                <button class="btn-success" title="Admin" (click)="openAdminList(memberlist,subclub.id)" ><i class="fa fa-plus"></i> Admin</button>
+                                <button class="btn-success" title="Admin" (click)="openAdminList(memberlist,subclub.id)"><i class="fa fa-plus"></i>
+                                    Admin</button>
                             </td>
                         </tr>
 
@@ -104,29 +109,20 @@
             <tr *ngFor="let member of memberList  | filter:term">
 
                 <td> {{member.id}}</td>
-                <td > {{member.username}} </td>
+                <td> {{member.username}} </td>
                 <td>
                     <div class="btn">
                         <button type="button" class="btn btn-primary" (click)="assignAdmin(member.id)">
                             Assign
-                          </button>
-                        
-                      </div>
+                        </button>
+
+                    </div>
                 </td>
             </tr>
 
         </table>
-
-
-
     </div>
 </ng-template>
-
-
-
-
-
-
 
 
 
@@ -165,12 +161,69 @@
 
                     <div class="form-group">
                         <button [disabled]="loading" type="submit" class="btn btn-primary">Save</button>
-
                     </div>
 
                     <div *ngIf="error" class="alert alert-danger">{{error}}</div>
+                </form>
+            </div>
+        </div>
+    </div>
+</ng-template>
 
 
+<ng-template #form let-modal>
+    <div class="modal-header">
+        <h4 class="modal-title" id="modal-basic-title">Create a New Club Category</h4>
+        <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+
+    <div class="modal-body">
+        <div class="col-md-6 offset-3">
+            <div class="form">
+
+                <form [formGroup]="createForm" (ngSubmit)="saveForm()">
+                    <div class="form-group">
+                        <label>Form Id</label>
+                        <input type="text" formControlName="formId" class="form-control" />
+                    </div>
+
+                    <div class="form-group">
+                        <label>Subclub Name</label>
+                        <input type="text" formControlName="subClubName" class="form-control" />
+                    </div>
+
+                    <div class="form-group">
+                        <label>Question 1</label>
+                        <input type="text" formControlName="questionOne" class="form-control" />
+                    </div>
+
+                    <div class="form-group">
+                        <label>Question 2</label>
+                        <input type="text" formControlName="questionTwo" class="form-control" />
+                    </div>
+
+                    <div class="form-group">
+                        <label>Question 3</label>
+                        <input type="text" formControlName="questionThree" class="form-control" />
+                    </div>
+
+                    <div class="form-group">
+                        <label>Question 4</label>
+                        <input type="text" formControlName="questionFour" class="form-control" />
+                    </div>
+
+                    <div class="form-group">
+                        <label>Question 5</label>
+                        <input type="text" formControlName="questionFive" class="form-control" />
+                    </div>
+
+                    <div class="form-group">
+                        <button [disabled]="loading" type="submit" class="btn btn-primary">Save</button>
+                    </div>
+
+                    <div *ngIf="error" class="alert alert-danger">{{error}}</div>
                 </form>
             </div>
         </div>

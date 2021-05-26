@@ -7,7 +7,7 @@ import { SubClubDto } from '../entity/subclubdto';
 import { JoinDto } from '../entity/joinDto';
 import { Announcement } from '../entity/announcement';
 import { User } from '../entity/user';
-
+import { formDto } from '../entity/formDto';
 
 @Injectable({ providedIn: 'root' })
 export class SubclubService {
@@ -23,12 +23,19 @@ export class SubclubService {
 
     }
 
+    getAllNonJoinedSubclubs(){
+        return this.http.get<SubClubDto[]>(`${environment.API_BASE_PATH}/subclubs/allnotmember`);
+
+    }
+
     deleteById(categoryId:string){
 
         return this.http.delete<any>(`${environment.API_BASE_PATH}/subclubs/delete/${categoryId}`);
 
     }
+    
 
+  
     
 
     saveSubclub(subclub:any){
@@ -54,7 +61,7 @@ export class SubclubService {
 
         return this.http.get<any>(`${environment.API_BASE_PATH}/subclubs/getmembers/${subclubId}`);
     }
-
+    
 
     getAllAnnouncements(subclubId){
 
@@ -65,6 +72,27 @@ export class SubclubService {
     saveAnnouncement(announcementDto, subclubId){
         return this.http.post<any>(`${environment.API_BASE_PATH}/subclubs/announcements/create/${subclubId}`,announcementDto);
 
+    }
+
+    saveFeedback(announcementDto, subclubId,username){
+        return this.http.post<any>(`${environment.API_BASE_PATH}/subclubs/feedbacks/create/${subclubId}/${username}`,announcementDto);
+
+    }
+
+    getFeedbacksBySubclubId(subclubId){
+
+        return this.http.get<any>(`${environment.API_BASE_PATH}/subclubs/feedbacks/all/${subclubId}`);
+    }
+
+    deleteFeedbackById(feedbackId:string){
+
+        return this.http.delete<any>(`${environment.API_BASE_PATH}/subclubs/feedbacks/delete/${feedbackId}`);
+
+    }
+
+    saveForm(formDto: formDto){
+        console.log("id: ",formDto.formId);
+        return this.http.post<any>(`${environment.API_BASE_PATH}/form/create`,formDto);
     }
 
 

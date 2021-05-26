@@ -1,36 +1,33 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
 
-  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
 
-    <ul class="navbar-nav mr-auto">
-      <a><img src="assets/img/clubinn.png" width="100" height="40"></a>
-      <button type="button"  class="btn btn-light" (click)="homepage()">Home</button>
-      <button type="button"  class="btn btn-light" (click)="mysubclubs()">My Subclubs</button>
+        <ul class="navbar-nav mr-auto">
+            <a><img src="assets/img/clubinn.png" width="100" height="40"></a>
+            <button type="button" class="btn btn-light" (click)="homepage()">Home</button>
+            <button type="button" class="btn btn-light" (click)="mysubclubs()">My Subclubs</button>
 
-      <button type="button"  class="btn btn-light" (click)="clubcategories()">Clubs</button>
-      <button type="button"  class="btn btn-light" >About us</button>
+            <button type="button" class="btn btn-light" (click)="clubcategories()">Clubs</button>
+            <button type="button" class="btn btn-light">About us</button>
 
-      <form class="form-inline my-2 my-lg-0">
-        <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-      </form>
-    </ul>
+            <form class="form-inline my-2 my-lg-0">
+                <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+            </form>
+        </ul>
 
+        <a [routerLink]="['/user/questionnaire']" class="btn btn-primary" style="margin-top:-5px;margin-right:50px">Go to Questionnaire</a>
+        <div class="btn-group">
+            <div class="dropdown">
+                <button class="dropbtn">Account</button>
+                <div class="dropdown-content">
+                    <a class="dropdown-item" (click)="profile()">Profile</a>
+                    <a class="dropdown-item" (click)="settings()">Settings</a>
+                    <div class="dropdown-divider"></div>
+                    <a class="dropdown-item" (click)="logout()">Logout</a>
+                </div>
+            </div>
 
-    <div class="btn-group">
-      <button type="button" style="background-color:white; color:teal">Account</button>
-      <button type="button" id="dropdownMenuButton" class="dropdown-toggle dropdown-toggle-split"
-        style="background-color:white; color:teal" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-        <span class="sr-only">Toggle Dropdown</span>
-      </button>
-      <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-        <a  class="dropdown-item" (click)="profile()">Profile</a>
-        <a class="dropdown-item" (click)="settings()">Settings</a>
-        <div class="dropdown-divider"></div>
-        <a  class="dropdown-item" (click)="logout()">Logout</a>
-      </div>
+        </div>
     </div>
-
-
-  </div>
 </nav>
