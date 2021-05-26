@@ -1,32 +1,32 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
 
-  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
 
-    <ul class="navbar-nav mr-auto">
-      <a><img src="assets/img/clubinn.png" width="100" height="40"></a>
-      <button type="button"  class="btn btn-light" (click)="adminHomepage()">Home</button>
-      <button type="button"  class="btn btn-light" (click)="clubcategories()">Club Category Panel</button>
-      <button type="button"  class="btn btn-light" (click)="subclubs()">Subclub Panel</button>
-      <form class="form-inline my-2 my-lg-0">
-        <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-      </form>
-    </ul>
+        <ul class="navbar-nav mr-auto">
+            <a><img src="assets/img/clubinn.png" width="100" height="40"></a>
+            <button type="button" class="btn btn-light" (click)="adminHomepage()">Home</button>
+            <button type="button" class="btn btn-light">Admin Panel</button>
+            <button type="button" class="btn btn-light" (click)="clubcategories()">Club Categories</button>
+            <button type="button" class="btn btn-light" (click)="subclubs()">Subclubs</button>
+            <form class="form-inline my-2 my-lg-0">
+                <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+            </form>
+        </ul>
 
 
-    <div class="btn-group">
-      <button type="button" style="background-color:white; color:teal">Account</button>
-      <button type="button" id="dropdownMenuButton" class="dropdown-toggle dropdown-toggle-split"
-        style="background-color:white; color:teal" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-        <span class="sr-only">Toggle Dropdown</span>
-      </button>
-      <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-        <a class="dropdown-item">Settings</a>
-        <div class="dropdown-divider"></div>
-        <a  class="dropdown-item" (click)="logout()">Logout</a>
-      </div>
+        <div class="btn-group">
+            <div class="dropdown">
+                <button class="dropbtn">Account</button>
+                <div class="dropdown-content">
+                    <a class="dropdown-item" (click)="logout()">Logout</a>
+                </div>
+            </div>
+
+
+        </div>
+
+
+
     </div>
-
-
-  </div>
 </nav>

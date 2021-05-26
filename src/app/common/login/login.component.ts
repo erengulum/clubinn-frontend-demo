@@ -1,8 +1,8 @@
-import {Component, OnInit} from '@angular/core';
-import {Router, ActivatedRoute} from '@angular/router';
-import {FormBuilder, FormGroup, Validators} from '@angular/forms';
-import {first} from 'rxjs/operators';
-import {AuthenticationService} from "../../services/security/authentication.service";
+import { Component, OnInit } from '@angular/core';
+import { Router, ActivatedRoute } from '@angular/router';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { first } from 'rxjs/operators';
+import { AuthenticationService } from "../../services/security/authentication.service";
 import { TokenDto } from '../../entity/tokendto';
 import { Role } from '../../entity/role';
 
@@ -22,10 +22,10 @@ export class LoginComponent implements OnInit {
 
 
   constructor(private formBuilder: FormBuilder, //Reactive form'un form builder'ı
-              private route: ActivatedRoute,
-              private router: Router,
-              private authenticationService: AuthenticationService) {
-                this.authenticationService.currentUser.subscribe(x => this.currentUser = x);
+    private route: ActivatedRoute,
+    private router: Router,
+    private authenticationService: AuthenticationService) {
+    this.authenticationService.currentUser.subscribe(x => this.currentUser = x);
   }
 
   ngOnInit() {
@@ -39,15 +39,14 @@ export class LoginComponent implements OnInit {
 
     this.returnUrl = '/';
 
-    if(this.currentUser !== null){
-      if(this.currentUser.role === Role.User) {
+    if (this.currentUser !== null) {
+      if (this.currentUser.role === Role.User) {
         this.router.navigate(['/user']);
       }
-      if(this.currentUser.role === Role.Admin) {
+      if (this.currentUser.role === Role.Admin) {
         this.router.navigate(['/admin']);
       }
     }
-
   }
 
   // convenience getter for easy access to form fields
@@ -55,33 +54,30 @@ export class LoginComponent implements OnInit {
     return this.loginForm.controls;
   }
 
-  login() {    
+  login() {
     this.submitted = true;
-
-        // stop here if form is invalid
-        if (this.loginForm.invalid) {
-          return;
-        }
+    // stop here if form is invalid
+    if (this.loginForm.invalid) {
+      return;
+    }
 
     this.loading = true;
     this.authenticationService.login(this.f.username.value, this.f.password.value)
       .pipe(first())
       .subscribe(
         data => {
-          if(data.role === Role.User) {
+          if (data.role === Role.User) {
             this.router.navigate(['/user/home']);
           }
-          if(data.role === Role.Admin) {
+          if (data.role === Role.Admin) {
             this.router.navigate(['/admin']);
           }
         },
         error => {
-          
+
           this.error = "Wrong Username or Password! Please try again";
           this.loading = false;
         });
     // event.preventDefault()
   }
-
-
 }

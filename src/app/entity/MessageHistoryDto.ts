@@ -1,9 +1,7 @@
 import { User } from "./user";
 
-export class MessageHistoryDto{
+export class MessageHistoryDto {
     content: string;
     user: User;
-    date:any;
-
-
+    date: any;
 }

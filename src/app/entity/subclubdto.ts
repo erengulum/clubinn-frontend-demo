@@ -3,9 +3,9 @@ import { ClubCategoryDto } from "./clubcategory";
 export class SubClubDto {
     id: number;
     subClubName: string;
-    imageurl:string;
+    imageurl: string;
     description: string;
-    clubCategoryId:number;
+    clubCategoryId: number;
     clubCategory: ClubCategoryDto;
 
 }

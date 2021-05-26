@@ -1,0 +1,148 @@
+<div class="main-content" style="padding-right: 80px; padding-right: 80px;padding-top: 60px;" style="align-items:center;" *ngIf="submitted() == 1">
+    <div class="background"></div>
+    <div class="text_font">
+        WHICH SUBCLUB DO YOU WANT TO JOIN?
+    </div>
+    <br>
+    <br>
+    <div class="section-content section-content-p30" style="align-items:center;">
+        <div class="container-fluid">
+            <div class="row" style="align-self: center;">
+                <!-- loop over the collection of products -->
+                <div *ngFor="let subclub of getclubs | filter:term" class="col-md-3">
+                    <div class="card" style="width: 18rem; margin: 20px;" *ngIf="isExists(subclub.id)">
+                        <img class="card-img-top" src={{subclub.imageurl}} width="80" height="200" alt="Card image cap">
+                        <div class="card-body">
+                            <a routerLink="#" style="align-self: center;">
+                                <h2 class="card-title">{{ subclub.subClubName }}</h2>
+                            </a>
+                            <p class="card-text">{{ subclub.description }}</p>
+                            <button class="btn btn-primary" (click)="select(subclub.id)">Select</button>
+                        </div>
+                    </div>
+                    <div class="card" style="width: 18rem; margin: 20px;" *ngIf="!isExists(subclub.id)">
+
+                        <img class="card-img-top" src={{subclub.imageurl}} width="80" height="200" alt="Card image cap">
+                        <div class="card-body">
+
+                            <h2 class="card-title">{{ subclub.subClubName }}</h2>
+
+                            <p class="card-text">{{ subclub.description }}</p>
+                            <button class="btn btn-success" (click)="unselect(subclub.id)">Selected</button>
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <button class="button button1" style="position: relative; margin-top: 60px;margin-left:10px" (click)="submitclubid()">Submit</button>
+
+                </div>
+
+                <div *ngIf="getclubs?.length == 0" class="alert alert-warning col-md-12" role="alert">
+                    No club categories found.
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<div class="main-content" *ngIf="submitted() == 2 && isSelected()">
+    <div class="background"></div>
+    <div class="text_font">
+        ANSWER THE QUESTIONS
+
+    </div>
+    <div class="description">1 -> (No Way) 2 -> (Meh) 3 -> (Maybe) 4 -> (Yeah) 5 -> (Absolutely)</div>
+    <br>
+    <br>
+
+    <div *ngFor="let form of getForms ">
+        <br>
+        <div class="header">
+
+            <h1>Club Name: {{ form.bagliolduguGrup }}</h1>
+        </div>
+
+        <ol>
+            <div *ngFor="let questions of form.questionList">
+                <br>
+
+
+                <li>) {{ questions.questionContent }}</li>
+
+
+                <div class="btn-group">
+
+                    <button class="button1" style="margin:10px" (click)="add_one()">1</button>
+
+                    <button class="button2" style="margin:10px" (click)="add_two()">2</button>
+
+                    <button class="button3" style="margin:10px" (click)="add_three()">3</button>
+
+                    <button class="button4" style="margin:10px" (click)="add_four()">4</button>
+
+                    <button class="button5" style="margin:10px" (click)="add_five()">5</button>
+                    <br>
+
+                </div>
+
+
+
+            </div>
+        </ol>
+
+    </div>
+
+    <div>
+        <button class="button button1" style="position: relative; margin-right: 100px;" (click)="submit_all_answers()">Submit</button>
+    </div>
+
+
+
+</div>
+
+<div *ngIf="!isSelected() && submitted()==2" class="alert alert-warning col-md-12" role="alert">
+    You have to select a sublcub!
+</div>
+
+<div class="main-content" style="padding-right: 80px; padding-right: 80px;padding-top: 60px;" style="align-items:center;" *ngIf="submitted() == 3">
+    <div class="background"></div>
+    <div class="text_font">
+        OFFERED SUBCLUBS
+    </div>
+    <br>
+    <br>
+    <div class="section-content section-content-p30" style="align-items:center;">
+        <div class="container-fluid">
+            <div class="row" style="align-self: center;">
+                <!-- loop over the collection of products -->
+                <div *ngFor="let sub of offeredsubclubs | filter:term" class="col-md-3">
+                    <div class="card" style="width: 18rem; margin: 20px;" *ngIf="isJoined(sub.id)">
+                        <img class="card-img-top" src={{sub.imageurl}} width="80" height="200" alt="Card image cap">
+                        <div class="card-body">
+                            <a routerLink="#" style="align-self: center;">
+                                <h2 class="card-title">{{ sub.subClubName }}</h2>
+                            </a>
+                            <p class="card-text">{{ sub.description }}</p>
+                            <button class="btn btn-primary" (click)="join(sub.id)">Join</button>
+                        </div>
+                    </div>
+                    <div class="card" style="width: 18rem; margin: 20px;" *ngIf="!isJoined(sub.id)">
+                        <img class="card-img-top" src={{sub.imageurl}} width="80" height="200" alt="Card image cap">
+                        <div class="card-body">
+                            <a routerLink="#" style="align-self: center;">
+                                <h2 class="card-title">{{ sub.subClubName }}</h2>
+                            </a>
+                            <p class="card-text">{{ sub.description }}</p>
+                            <button class="btn btn-success" (click)="gotoSubclubPage(sub.id)">Go</button>
+                        </div>
+                    </div>
+                </div>
+                <div *ngIf="offeredsubclubs?.length == 0" class="alert alert-warning col-md-12" role="alert">
+                    No joinable clubs found.
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

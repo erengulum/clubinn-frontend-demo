@@ -7,16 +7,14 @@ import { Location } from '@angular/common';
   templateUrl: './unauthorized.component.html',
   styleUrls: ['./unauthorized.component.css']
 })
-export class UnauthorizedComponent{
+export class UnauthorizedComponent {
 
-  constructor(private _location: Location){}
+  constructor(private _location: Location) { }
 
   ngOnInit(): void {
   }
 
-
-  backClicked():void {
+  backClicked(): void {
     this._location.back();
   }
-
 }

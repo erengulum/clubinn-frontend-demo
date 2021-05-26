@@ -7,7 +7,7 @@ import { SubClubDto } from '../entity/subclubdto';
 import { JoinDto } from '../entity/joinDto';
 import { Announcement } from '../entity/announcement';
 import { User } from '../entity/user';
-
+import { formDto } from '../entity/formDto';
 
 @Injectable({ providedIn: 'root' })
 export class SubclubService {
@@ -20,6 +20,11 @@ export class SubclubService {
     getAllSubClubsByCategory(categoryId:string){
 
         return this.http.get<SubClubDto[]>(`${environment.API_BASE_PATH}/subclubs/all/${categoryId}`);
+
+    }
+
+    getAllNonJoinedSubclubs(){
+        return this.http.get<SubClubDto[]>(`${environment.API_BASE_PATH}/subclubs/allnotmember`);
 
     }
 
@@ -84,6 +89,12 @@ export class SubclubService {
         return this.http.delete<any>(`${environment.API_BASE_PATH}/subclubs/feedbacks/delete/${feedbackId}`);
 
     }
+
+    saveForm(formDto: formDto){
+        console.log("id: ",formDto.formId);
+        return this.http.post<any>(`${environment.API_BASE_PATH}/form/create`,formDto);
+    }
+
 
 
     assignAdmin(subclubId, userId){

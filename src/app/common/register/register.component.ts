@@ -1,9 +1,10 @@
-import {Component, OnInit} from '@angular/core';
-import {Router} from '@angular/router';
-import {FormBuilder, FormGroup, Validators} from '@angular/forms';
-import {first} from 'rxjs/operators';
-import {AuthenticationService} from "../../services/security/authentication.service";
+import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { first } from 'rxjs/operators';
+import { AuthenticationService } from "../../services/security/authentication.service";
 import { MustMatch } from '../../helpers/must-match.validator';
+import { MatButtonModule } from '@angular/material/button';
 import {MatButtonModule} from '@angular/material/button';
 import { ResponseMessage } from 'src/app/entity/responseMessage';
 
@@ -22,21 +23,21 @@ export class RegisterComponent implements OnInit {
   response:ResponseMessage;
 
   constructor(private formBuilder: FormBuilder,
-              private router: Router,
-              private authenticationService: AuthenticationService) {
+    private router: Router,
+    private authenticationService: AuthenticationService) {
   }
 
   ngOnInit() {
     this.registerForm = this.formBuilder.group({
       username: ['', Validators.required],
       password: ['', Validators.required],
-      firstName:['', Validators.required],
+      firstName: ['', Validators.required],
       surname: ['', Validators.required],
       email: ['', Validators.required], //E-mail ile dogrulamayı daha sonra eklemeyi unutma: https://blog.mailtrap.io/angular-email-validation/
       confirmPassword: ['', Validators.required]
     }, {
       validator: MustMatch('password', 'confirmPassword')
-  });
+    });
     this.authenticationService.logout();
   }
 

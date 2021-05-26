@@ -255,6 +255,7 @@ this.subclubService.saveFeedback(this.feedbackForm.getRawValue(), this.subclubId
     this.loading = false;
   });
 
+
 }
 
 showUserProfile(content,clickedUsername,name,surname){
