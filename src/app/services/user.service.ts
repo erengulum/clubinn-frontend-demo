@@ -29,6 +29,11 @@ export class UserService {
         return this.http.put<any>(`${environment.API_BASE_PATH}/user/settings/update/${username}`,profile);
     }
 
+    updatePassword(passwordDto, username){ ///profile/changepassword/{username}
+        console.log("update profileSettings: ",username);
+        return this.http.put<any>(`${environment.API_BASE_PATH}/user/profile/changepassword/${username}`,passwordDto);
+    }
+
     updateUserProfile(profile:UserProfile, username:string){
         console.log("update profile: ",username);
         return this.http.put<any>(`${environment.API_BASE_PATH}/user/profile/update/${username}`,profile);

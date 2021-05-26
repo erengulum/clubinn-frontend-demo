@@ -6,6 +6,8 @@ import { UserService } from 'src/app/services/user.service';
 import {AuthenticationService} from "../../../services/security/authentication.service";
 import { User } from 'src/app/entity/user';
 import { TokenDto } from 'src/app/entity/tokendto';
+import { MustMatch } from '../../../helpers/must-match.validator';
+import { first } from 'rxjs/operators';
 
 @Component({
   selector: 'app-setting-user',
@@ -14,7 +16,7 @@ import { TokenDto } from 'src/app/entity/tokendto';
 })
 export class SettingUserComponent implements OnInit {
 
-  userForm: FormGroup;
+  passwordForm: FormGroup;
   loading = false;
   submitted = false;
   returnUrl: string;
@@ -34,11 +36,14 @@ export class SettingUserComponent implements OnInit {
     {
       this.authenticationService.currentUser.subscribe(x => this.currentUser = x);
       this.currentUsername =this.currentUser.username;
-      this.userForm = this.formBuilder.group({
-        email: ['', Validators.required],
-        password: ['', Validators.required]
+      this.passwordForm = this.formBuilder.group({
+        oldPassword: ['', Validators.required],
+        newPassword: ['', Validators.required],
+        newPasswordConfirmation: ['', Validators.required]
         
-      });
+      }, {
+        validator: MustMatch('newPassword', 'newPasswordConfirmation')
+    });
       this.retrieveUserData();
   }
 
@@ -46,18 +51,30 @@ export class SettingUserComponent implements OnInit {
     
   }
 
+  get f() {
+    return this.passwordForm.controls;
+  }
 
   public clickSubmitProfile(): void {
-    if (this.userForm.invalid) {
+    if (this.passwordForm.invalid) {
         // stop here if it's invalid
-        alert('Invalid input');
+        alert("Confirmation of New Password and New Password doesn't match!");
         return;
     }
-    this.userService.updateUserData(this.userForm.getRawValue(),this.currentUsername)
-        .subscribe((): void => {
-            alert('Saved!');
-        });
+    this.userService.updatePassword(this.passwordForm.getRawValue(),this.currentUsername)
+    .pipe(first())
+    .subscribe(
+      data => {
+        alert(data.responseMessage);
+        
+      },
+      error => {
+        this.error = error;
+        this.loading = false;
+      });
 }
+
+
 
 
 
@@ -66,7 +83,7 @@ private retrieveUserData(): void {
   this.userService.getUserData(this.currentUsername)
       .subscribe((res: User) => {
         
-          this.userForm.patchValue(res);
+          this.passwordForm.patchValue(res);
       });
 }
 
