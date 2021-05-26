@@ -5,10 +5,10 @@
 
 <div>
 
-    <button class="btn btn-success" (click)="open(content)">Create New Club Category Request</button>
+    <button class="btn btn-success" (click)="open(content)" *ngIf="currentUser">Create New Club Category Request</button>
 
 
-    <button class="btn btn-primary" style="position: absolute; right: 0;" (click)="open(requests)">List Club Category
+    <button class="btn btn-primary" style="position: absolute; right: 0;" (click)="open(requests)" *ngIf="currentUser">List Club Category
         Requests</button>
 
 

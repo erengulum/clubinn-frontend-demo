@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 
-
 <html class=''>
 
 <head>
@@ -29,145 +28,295 @@ A concept for a chat interface.
 
 SOURCE FOR THE MESSAGE PAGE DESIGN:  https://bootsnipp.com/snippets/35mvD
 -->
-    <div class="split left">
-        <div id="frame">
-            <div id="sidepanel">
-                <div id="search">
-                    <label for=""><i class="fa fa-search" aria-hidden="true"></i></label>
-                    <input type="text" class="form-control" placeholder="Search Here" [(ngModel)]="term">
-                </div>
-                <div id="contacts">
-                    <ul *ngFor="let member of subclubMembers | filter:term">
-                        <li class="contact">
-                            <div class="wrap">
-                                <img src="https://www.pngfind.com/pngs/m/470-4703547_icon-user-icon-hd-png-download.png" alt="" />
-                                <div class="meta">
-                                    <p class="name">{{member.firstName}} {{member.surname}}</p>
-                                </div>
-                            </div>
-                        </li>
-                    </ul>
-                </div>
-                <div id="bottom-bar">
-                    <button id="settings"><i class="fa fa-cog fa-fw" aria-hidden="true"></i>
+
+
+	<div class="split left">
+
+
+		<div id="frame">
+			<div id="sidepanel">
+
+				<div id="search">
+					<label for=""><i class="fa fa-search" aria-hidden="true"></i></label>
+					<input type="text" class="form-control" placeholder="Search Here" [(ngModel)]="term">
+				</div>
+
+
+				<div id="contacts">
+					<ul *ngFor="let member of subclubMembers | filter:term">
+
+						<li class="contact">
+							<div class="wrap">
+								<img src="https://www.pngfind.com/pngs/m/470-4703547_icon-user-icon-hd-png-download.png"
+									alt="" />
+								<div class="meta">
+									<button
+										style=" border: none; color:white;  background-color: transparent; border-radius:0mm;"
+										(click)="showUserProfile(userdetailmodal,member.username, member.firstName, member.surname)">{{member.firstName}}
+										{{member.surname}}</button>
+								</div>
+							</div>
+						</li>
+
+					</ul>
+				</div>
+
+
+
+				<div id="bottom-bar">
+					<button id="settings"><i class="fa fa-cog fa-fw" aria-hidden="true"></i>
 						<span>Settings</span></button>
-                    <button id="settings" (click)="open(feedbackmodal)"><i class="w3-button w3-teal"
+					<button id="settings" (click)="open(feedbackmodal)"><i class="w3-button w3-teal"
 							aria-hidden="true"></i>
 						<span>Feedback</span></button>
-                </div>
-            </div>
+				</div>
+			</div>
 
-            <div class="content">
-                <div class="contact-profile">
-                    <div class="social-media">
-                        <i class="fa fa-facebook" aria-hidden="true"></i>
-                        <i class="fa fa-twitter" aria-hidden="true"></i>
-                        <i class="fa fa-instagram" aria-hidden="true"></i>
-                    </div>
-                </div>
-                <div class="messages">
-                    <ul *ngFor="let msg of messageHistory">
-                        <li class="sent" *ngIf="!isMyMessage(msg)">
-                            <p>{{msg.content}}</p>
-                            <span class="time_date" style="padding-bottom: 30px;"> {{msg.user.firstName}}
+
+
+
+
+
+			<div class="content">
+				<div class="contact-profile">
+					<div class="social-media">
+						<i class="fa fa-facebook" aria-hidden="true"></i>
+						<i class="fa fa-twitter" aria-hidden="true"></i>
+						<i class="fa fa-instagram" aria-hidden="true"></i>
+					</div>
+				</div>
+				<div class="messages">
+					<ul *ngFor="let msg of messageHistory">
+
+
+						<li class="sent" *ngIf="!isMyMessage(msg)">
+							<p>{{msg.content}}</p>
+							<span class="time_date" style="padding-bottom: 30px;"> {{msg.user.firstName}}
 								{{msg.user.surname}} </span>
-                        </li>
-                        <li class="replies" *ngIf="isMyMessage(msg)">
-                            <p>{{msg.content}}</p>
-                        </li>
-                    </ul>
-                </div>
-                <div class="message-input">
-                    <div class="wrap">
-                        <form [formGroup]="messageForm" (ngSubmit)="sendMessage()">
-                            <div class="form-group">
-                                <input type="text" formControlName="content" class="input" style="width: 610px;" placeholder="Write your message..." />
-                                <button class="submit" [disabled]="loading" type="submit"><i class="fa fa-paper-plane"
-										aria-hidden="true"></i></button>
-                            </div>
-                            <div *ngIf="error" class="alert alert-danger">{{error}}</div>
-                        </form>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+						</li>
 
-    <div class="split right">
-        <div class="list-group " style="height: 600px; width: 400px; padding:10px; background-color:grey;" pad>
-            <h3 style="align-self: center; color:white;">Announcements</h3>
-            <button class="btn btn-success" style="float: right; margin-bottom: 20px;" (click)="open(requests)" *ngIf="isSubclubAdmin()"><i class="fa fa-plus"></i> New Announcement</button>
-            <div *ngFor="let annon of announcements | filter:term">
-                <!--https://getbootstrap.com/docs/4.0/components/list-group/-->
-                <a href="#" class="list-group-item list-group-item-action flex-column align-items-start active">
-                    <div class="d-flex w-100 justify-content-between">
-                        <h5 class="mb-1">{{annon.headline}}</h5>
-                    </div>
-                    <p class="mb-1">{{annon.content}}</p>
-                </a>
-                <br>
-            </div>
-        </div>
-    </div>
+
+						<li class="replies" *ngIf="isMyMessage(msg)">
+							<p>{{msg.content}}</p>
+						</li>
+
+
+
+					</ul>
+				</div>
+				<div class="message-input">
+
+					<div class="wrap">
+
+						<form [formGroup]="messageForm" (ngSubmit)="sendMessage()">
+							<div class="form-group">
+								<input type="text" formControlName="content" class="input" style="width: 610px;"
+									placeholder="Write your message..." />
+								<button class="submit" [disabled]="loading" type="submit"><i class="fa fa-paper-plane"
+										aria-hidden="true"></i></button>
+
+							</div>
+
+
+
+
+							<div *ngIf="error" class="alert alert-danger">{{error}}</div>
+
+
+						</form>
+
+
+					</div>
+
+				</div>
+			</div>
+
+
+		</div>
+	</div>
+
+	<div class="split right">
+		<div class="list-group " style="height: 600px; width: 400px; padding:10px; background-color:grey;" pad>
+			<h3 style="align-self: center; color:white;">Announcements</h3>
+			<button class="btn btn-success" style="float: right; margin-bottom: 20px;" (click)="open(requests)"
+				*ngIf="isSubclubAdmin()"><i class="fa fa-plus"></i> New Announcement</button>
+
+			<div *ngFor="let annon of announcements | filter:term">
+				<!--https://getbootstrap.com/docs/4.0/components/list-group/-->
+				<a href="#" class="list-group-item list-group-item-action flex-column align-items-start active">
+					<div class="d-flex w-100 justify-content-between">
+						<h5 class="mb-1">{{annon.headline}}</h5>
+					</div>
+					<p class="mb-1">{{annon.content}}</p>
+				</a>
+				<br>
+			</div>
+		</div>
+
+	</div>
+
+
+
 </body>
 
 
 <ng-template #requests let-modal>
-    <div class="modal-header">
-        <h4 class="modal-title" id="modal-basic-title">Create a New Announcement</h4>
-        <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+
+	<div class="modal-header">
+		<h4 class="modal-title" id="modal-basic-title">Create a New Announcement</h4>
+		<button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
 			<span aria-hidden="true">&times;</span>
 		</button>
-    </div>
-    <div class="modal-body">
-        <div class="form">
-            <form [formGroup]="announcementForm" (ngSubmit)="saveAnnouncement()">
-                <div class="form-group">
-                    <label>Announcement Headline</label>
-                    <input type="text" formControlName="headline" class="form-control" />
-                </div>
-                <div class="form-group">
-                    <label>Announcement Content</label>
-                    <input type="text" formControlName="content" class="form-control" style="height:150px;" />
-                </div>
-                <div class="form-group">
-                    <button [disabled]="loading" type="submit" class="btn btn-primary">Save</button>
-                </div>
-                <div *ngIf="error" class="alert alert-danger">{{error}}</div>
-            </form>
-        </div>
-    </div>
+
+
+	</div>
+
+	<div class="modal-body">
+		<div class="form">
+
+			<form [formGroup]="announcementForm" (ngSubmit)="saveAnnouncement()">
+				<div class="form-group">
+					<label>Announcement Headline</label>
+					<input type="text" formControlName="headline" class="form-control" />
+				</div>
+
+				<div class="form-group">
+					<label>Announcement Content</label>
+					<input type="text" formControlName="content" class="form-control" style="height:150px;" />
+				</div>
+
+				<div class="form-group">
+					<button [disabled]="loading" type="submit" class="btn btn-primary">Save</button>
+
+				</div>
+
+				<div *ngIf="error" class="alert alert-danger">{{error}}</div>
+
+
+			</form>
+		</div>
+	</div>
 </ng-template>
 
 
 <ng-template #feedbackmodal let-modal>
-    <div class="modal-header">
-        <h4 class="modal-title" id="modal-basic-title">Send a New Feedback</h4>
-        <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+
+
+	<div class="modal-header">
+		<h4 class="modal-title" id="modal-basic-title">Send a New Feedback</h4>
+		<button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
 			<span aria-hidden="true">&times;</span>
 		</button>
-    </div>
-    <div class="modal-body">
-        <div class="form">
-            <form [formGroup]="feedbackForm" (ngSubmit)="saveFeedback()">
-                <div class="form-group">
-                    <label>Feedback Type: </label> <br>
-                    <select id="feedbackType" name="feedbackType" formControlName="feedbackType">
+
+
+	</div>
+
+	<div class="modal-body">
+		<div class="form">
+
+			<form [formGroup]="feedbackForm" (ngSubmit)="saveFeedback()">
+
+				<div class="form-group">
+					<label>Feedback Type: </label> <br>
+					<select id="feedbackType" name="feedbackType" formControlName="feedbackType">
 						<option value="report">Report</option>
 						<option value="advice">Advice</option>
 						<option value="complaint">Complaint</option>
 						<option value="other">Other</option>
 					</select>
-                </div>
-                <div class="form-group">
-                    <label>Feedback Content</label>
-                    <input type="text" formControlName="comment" class="form-control" style="height:150px;" />
-                </div>
-                <div class="form-group">
-                    <button [disabled]="loading" type="submit" class="btn btn-primary">Send</button>
-                </div>
-                <div *ngIf="error" class="alert alert-danger">{{error}}</div>
-            </form>
-        </div>
-    </div>
+				</div>
+
+				<div class="form-group">
+					<label>Feedback Content</label>
+					<input type="text" formControlName="comment" class="form-control" style="height:150px;" />
+				</div>
+
+				<div class="form-group">
+					<button [disabled]="loading" type="submit" class="btn btn-primary">Send</button>
+
+				</div>
+
+				<div *ngIf="error" class="alert alert-danger">{{error}}</div>
+
+
+			</form>
+		</div>
+	</div>
+</ng-template>
+
+
+
+<ng-template #userdetailmodal let-modal>
+
+	<div class="modal-header">
+
+
+	</div>
+
+	<div class="modal-body">
+
+		<div class="container">
+			<div class="col-12">
+				<div class="card">
+					<div class="card-body">
+						<div class="card-title mb-4 offset-3">
+							<div class="d-flex justify-content-start">
+								<div class="userData ml-3">
+									<h2 class="d-block" style="font-size: 1.5rem; color:teal; font-weight: bold"><a
+											href="javascript:void(0);"> {{clickedUserName}} {{clickedUserSurname}}
+										</a></h2>
+									<label class="hoverable" for="fileInput">
+										<div style="float: left;">
+											<img  style="width: 100px;" [src]="url ? url : 'https://www.w3schools.com/howto/img_avatar.png'">
+										</div>
+										
+
+									</label>
+
+								
+								</div>
+								<div class="ml-auto">
+									<input type="button" class="btn btn-primary d-none" id="btnDiscard"
+										value="Discard Changes" />
+								</div>
+							</div>
+						</div>
+
+
+						<div class="col-md-6 offset-3">
+							<div class="form">
+
+								<form >
+									<div class="form-group">
+										<label>About Me</label>
+										<p>{{clickedUserProfile.about}}</p>
+									</div>
+
+									<div class="form-group">
+										<label>City</label>
+										<p>{{clickedUserProfile.city}}</p>
+									</div>
+
+									<div class="form-group">
+										<label>Phone Number</label>
+										<p>{{clickedUserProfile.phone}}</p>
+									</div>
+
+									<div class="form-group">
+										<label>Hobbies</label>
+										<p>{{clickedUserProfile.hobbies}}</p>
+									</div>								
+
+								</form>
+							</div>
+						</div>
+
+
+
+					</div>
+
+				</div>
+			</div>
+		</div>
+	</div>
 </ng-template>

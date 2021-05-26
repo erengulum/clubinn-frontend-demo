@@ -96,6 +96,7 @@ export class SubclubService {
     }
 
 
+
     assignAdmin(subclubId, userId){
         return this.http.get<any>(`${environment.API_BASE_PATH}/subclubs/${subclubId}/admin/${userId}`);
     }

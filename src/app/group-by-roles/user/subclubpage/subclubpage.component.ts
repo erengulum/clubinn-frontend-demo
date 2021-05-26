@@ -3,6 +3,9 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { MessageDto } from 'src/app/entity/messagedto';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import { MessageService } from 'src/app/services/messageservice';
+import { UserService } from 'src/app/services/user.service';
+
+
 import { MessageHistoryDto } from 'src/app/entity/MessageHistoryDto';
 import { TokenDto } from 'src/app/entity/tokendto';
 import { AuthenticationService } from 'src/app/services/security/authentication.service';
@@ -10,6 +13,8 @@ import { User } from 'src/app/entity/user';
 import { SubclubService } from 'src/app/services/subclubservice';
 import { Announcement } from 'src/app/entity/announcement';
 import {NgbModal, ModalDismissReasons} from '@ng-bootstrap/ng-bootstrap';
+import { UserProfile } from 'src/app/common/user-profile';
+import { first } from 'rxjs/operators';
 
 declare var $: any;
 
@@ -47,11 +52,16 @@ export class SubclubpageComponent implements OnInit {
   submitted = false;
   error = '';
 
+  clickedUserProfile:UserProfile;
+  clickedUserName:String;
+  clickedUserSurname:String;
+
 
 
   constructor(private router: Router,private messageservice:MessageService, private subclubService: SubclubService,
     private formBuilder: FormBuilder, private authenticationService: AuthenticationService, 
-    private route: ActivatedRoute,private modalService: NgbModal) {
+    private route: ActivatedRoute,private modalService: NgbModal,
+    private userService:UserService) {
     
     this.subclubId = this.route.snapshot.paramMap.get('subClubId');
 
@@ -246,8 +256,46 @@ this.subclubService.saveFeedback(this.feedbackForm.getRawValue(), this.subclubId
   });
 
 
+}
 
+showUserProfile(content,clickedUsername,name,surname){
+
+  this.clickedUserName=name;
+  this.clickedUserSurname=surname;
+  
+  console.log("tiklanan isim: ",clickedUsername);
+  this.userService.getProfile(clickedUsername)
+      .pipe(first())
+      .subscribe(
+        data => {
+          this.clickedUserProfile = data;
+          
+        },
+        error => {
+          this.error = error;
+          this.loading = false;
+        });
+
+
+
+  this.modalService.open(content, {ariaLabelledBy: 'modal-basic-title'}).result.then((result) => {
+    this.closeResult = `Closed with: ${result}`;
+    this.ngOnInit();
+
+  }, (reason) => {
+    this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
+    this.ngOnInit();
+
+  });
 
 }
+
+
+  
+  
+
+
+
+
 
 }
