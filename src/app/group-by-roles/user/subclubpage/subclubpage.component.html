@@ -147,7 +147,9 @@ SOURCE FOR THE MESSAGE PAGE DESIGN:  https://bootsnipp.com/snippets/35mvD
 					<div class="d-flex w-100 justify-content-between">
 						<h5 class="mb-1">{{annon.headline}}</h5>
 					</div>
+					<div></div>
 					<p class="mb-1">{{annon.content}}</p>
+					<button (click)="deleteAnnonById(annon.id)" class="fa fa-trash" *ngIf="isSubclubAdmin()"></button>
 				</a>
 				<br>
 			</div>

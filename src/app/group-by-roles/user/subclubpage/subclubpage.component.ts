@@ -212,6 +212,23 @@ getAnnouncements = ()=>{
   );
 }
 
+deleteAnnonById(id){
+  console.log("announcement silmeye geldi:",id);
+
+  this.subclubService.deleteAnnouncementById(id).subscribe(
+    (data)=>{
+      alert("Announcement/Event is successfully deleted");
+      this.getAnnouncements();
+
+    },
+    (error)=>{
+      alert("Problem occured while removing announcement.Please try again ");
+    }
+  );
+
+
+}
+
 
 
 saveAnnouncement(){
