@@ -5,7 +5,6 @@ import { first } from 'rxjs/operators';
 import { AuthenticationService } from "../../services/security/authentication.service";
 import { MustMatch } from '../../helpers/must-match.validator';
 import { MatButtonModule } from '@angular/material/button';
-import {MatButtonModule} from '@angular/material/button';
 import { ResponseMessage } from 'src/app/entity/responseMessage';
 
 

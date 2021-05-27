@@ -91,7 +91,6 @@ export class SubclubService {
     }
 
     saveForm(formDto: formDto){
-        console.log("id: ",formDto.formId);
         return this.http.post<any>(`${environment.API_BASE_PATH}/form/create`,formDto);
     }
 
