@@ -8,6 +8,7 @@ import { User } from 'src/app/entity/user';
 import { formDto } from 'src/app/entity/formDto';
 import { QuestionDto } from 'src/app/entity/questiondto';
 import { Feedback } from 'src/app/entity/feedback';
+import { first } from 'rxjs/operators';
 
 
 @Component({
@@ -46,7 +47,6 @@ export class SubClubCRUDComponent implements OnInit {
     });
 
     this.createForm = this.formBuilder.group({
-      formId: ['', Validators.required],
       subClubName: ['', Validators.required],
       questionOne: ['', Validators.required],
       questionTwo: ['', Validators.required],
@@ -144,14 +144,34 @@ export class SubClubCRUDComponent implements OnInit {
       return;
     }
     this.subclubService.saveSubclub(this.subclubForm.getRawValue())
-      .subscribe((): void => {
-        alert('Saved!');
-        this.ngOnInit();
+    .pipe(first())
+    .subscribe(
+      data => {
+       alert("New subclub successfully created");
+      },
+      error => {
+
+        alert("Wrong Input! Please try again. There might be a same subclub with same name");
       });
   }
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
   public saveForm(): void {
-    var formid: number = +this.createForm.controls.formId.value;
 
     this.createQuestions[0] = new QuestionDto;
     this.createQuestions[1] = new QuestionDto;
@@ -165,8 +185,7 @@ export class SubClubCRUDComponent implements OnInit {
     this.createQuestions[4].questionContent = this.createForm.controls.questionFive.value;
 
 
-    this.createFormDto = {formId:formid,bagliolduguGrup:this.createForm.controls.subClubName.value,questionList:this.createQuestions};
-    console.log(this.createFormDto.questionList);
+    this.createFormDto = {bagliolduguGrup:this.createForm.controls.subClubName.value,questionList:this.createQuestions};
     if (this.createForm.invalid) {
       // stop here if it's invalid
       alert('Invalid input');

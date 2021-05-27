@@ -1,3 +1,21 @@
 <p>Dear {{currentUser.username}}, welcome to the ClubInn</p>
 <p>Your role is: <strong>{{currentUser.role}}</strong>.</p>
-<p>This page can be accessed by <u>admins</u>.</p>
+
+
+
+<div style="margin-left: 250px;">
+    <div>
+        <button class="btn btn-success" style=" width: 350px; height: 200px; border-radius: 10mm; margin: 30px; " (click)="clubcategories()">Club Operations</button>
+        <button class="btn btn-success" style=" width: 350px; height: 200px; border-radius: 10mm; margin: 30px;" (click)="subclubs()">Subclub Operations</button>
+    
+
+    </div>
+    
+<div>
+    <button class="btn btn-success" style=" width: 350px; height: 200px; border-radius: 10mm; margin: 30px;">User Operations</button>
+    <button class="btn btn-success" style=" width: 350px; height: 200px; border-radius: 10mm; margin: 30px;">System Details</button>
+    
+</div>
+   
+    </div>
+    

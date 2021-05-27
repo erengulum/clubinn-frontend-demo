@@ -28,7 +28,7 @@
                         </div>
 
                         <div class="form">
-                            <button class="btn btn-success" (click)="create(form)">Create Form</button>
+                            <button class="btn btn-success" (click)="create(form)">Create a Questionnaire</button>
                         </div>
 
                         <div class="form">
@@ -142,22 +142,22 @@
                 <form [formGroup]="subclubForm" (ngSubmit)="save()">
                     <div class="form-group">
                         <label>Subclub Name</label>
-                        <input type="text" formControlName="subClubName" class="form-control" />
+                        <input type="text" style="width: 300px;" formControlName="subClubName" class="form-control" />
                     </div>
 
                     <div class="form-group">
                         <label>Url of the Header Image</label>
-                        <input type="text" formControlName="imageurl" class="form-control" />
+                        <input type="text" style="width: 300px;" formControlName="imageurl" class="form-control" />
                     </div>
 
                     <div class="form-group">
                         <label>Description of the Subclub:</label>
-                        <input type="text" formControlName="description" class="form-control" />
+                        <input type="text" style="width: 300px; height: 200px;" formControlName="description" class="form-control" />
                     </div>
 
                     <div class="form-group">
                         <label>Category Id of the Subclub:</label>
-                        <input type="number" formControlName="clubCategoryId" class="form-control" />
+                        <input type="number" style="width: 300px;" formControlName="clubCategoryId" class="form-control" />
                     </div>
 
                     <div class="form-group">
@@ -174,7 +174,7 @@
 
 <ng-template #form let-modal>
     <div class="modal-header">
-        <h4 class="modal-title" id="modal-basic-title">Create a New Club Category</h4>
+        <h4 class="modal-title" id="modal-basic-title">Create a New Questionnaire</h4>
         <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
             <span aria-hidden="true">&times;</span>
         </button>
@@ -185,39 +185,35 @@
             <div class="form">
 
                 <form [formGroup]="createForm" (ngSubmit)="saveForm()">
-                    <div class="form-group">
-                        <label>Form Id</label>
-                        <input type="text" formControlName="formId" class="form-control" />
-                    </div>
 
                     <div class="form-group">
                         <label>Subclub Name</label>
-                        <input type="text" formControlName="subClubName" class="form-control" />
+                        <input type="text" style="width: 300px;" formControlName="subClubName" class="form-control" />
                     </div>
 
                     <div class="form-group">
                         <label>Question 1</label>
-                        <input type="text" formControlName="questionOne" class="form-control" />
+                        <input type="text" style="width: 300px;"  formControlName="questionOne" class="form-control" />
                     </div>
 
                     <div class="form-group">
                         <label>Question 2</label>
-                        <input type="text" formControlName="questionTwo" class="form-control" />
+                        <input type="text" style="width: 300px;" formControlName="questionTwo" class="form-control" />
                     </div>
 
                     <div class="form-group">
                         <label>Question 3</label>
-                        <input type="text" formControlName="questionThree" class="form-control" />
+                        <input type="text" style="width: 300px;" formControlName="questionThree" class="form-control" />
                     </div>
 
                     <div class="form-group">
                         <label>Question 4</label>
-                        <input type="text" formControlName="questionFour" class="form-control" />
+                        <input type="text" style="width: 300px;" formControlName="questionFour" class="form-control" />
                     </div>
 
                     <div class="form-group">
                         <label>Question 5</label>
-                        <input type="text" formControlName="questionFive" class="form-control" />
+                        <input type="text" style="width: 300px;" formControlName="questionFive" class="form-control" />
                     </div>
 
                     <div class="form-group">

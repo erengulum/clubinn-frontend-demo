@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { TokenDto } from 'src/app/entity/tokendto';
 import { AuthenticationService } from 'src/app/services/security/authentication.service';
 
@@ -10,7 +11,7 @@ import { AuthenticationService } from 'src/app/services/security/authentication.
 export class AdminHomepageComponent implements OnInit {
   currentUser: TokenDto;
 
-  constructor(private authenticationService: AuthenticationService) {
+  constructor(private authenticationService: AuthenticationService,    private router: Router) {
 
     this.authenticationService.currentUser.subscribe(x => this.currentUser = x);
   }
@@ -18,5 +19,16 @@ export class AdminHomepageComponent implements OnInit {
 
   ngOnInit(): void {
   }
+
+  
+subclubs(){
+  this.router.navigate(['/admin/subclubs']);
+}
+
+clubcategories(){
+  this.router.navigate(['/admin/clubcategories']);
+}
+
+
 
 }
