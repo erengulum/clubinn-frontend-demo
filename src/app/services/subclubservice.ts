@@ -74,6 +74,12 @@ export class SubclubService {
 
     }
 
+    deleteAnnouncementById(anonnId:string){
+
+        return this.http.delete<any>(`${environment.API_BASE_PATH}/subclubs/announcements/delete/${anonnId}`);
+
+    }
+
     saveFeedback(announcementDto, subclubId,username){
         return this.http.post<any>(`${environment.API_BASE_PATH}/subclubs/feedbacks/create/${subclubId}/${username}`,announcementDto);
 
